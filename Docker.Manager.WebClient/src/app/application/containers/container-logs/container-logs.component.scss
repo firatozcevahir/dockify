@@ -1,0 +1,15 @@
+.container-log {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.container-log-container {
+    max-height: 500px;
+    color: #aed9fa;
+    background: #253138;
+    overflow: auto;
+    margin: 0 0 0 10px;
+    font-family: 'Courier New', Courier, monospace;
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+}

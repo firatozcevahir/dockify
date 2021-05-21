@@ -1,0 +1,14 @@
+<mat-toolbar color="danger">
+  {{'SYSTEM.RECORD.INSPECT_PROCESS'|translate}} | 
+  <span *ngIf="containerName !== ''" class="header-container-title">{{containerName}}</span> 
+  <span class="header-image-title" [ngClass]="{'small-image-name' : containerName !== ''}">{{title}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-spinner *ngIf="isRequesting"></mat-spinner>
+<mat-dialog-content class="mat-typography" *ngIf="!isRequesting">
+  <pre>{{resultData|json}}</pre>
+</mat-dialog-content>

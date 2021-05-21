@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content>
+  <div>
+    <mat-icon>{{ getAlertIcon() }}</mat-icon>
+    {{ data.content }}
+  </div>
+</mat-dialog-content>
+<mat-divider></mat-divider>
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" [mat-dialog-close]="data.title">
+    {{ data.closeButtonLabel }}
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  docker.manager.api:
+    image: ${DOCKER_REGISTRY-}dockermanagerapi:1.0
+    build:
+      context: .
+      dockerfile: Docker.Manager.Api/Dockerfile
+      args:
+        - skip_client_build=true
+    restart: unless-stopped  
+    networks:
+      - teknopalas
+      
+networks:
+  teknopalas:
+    name: teknopalas-network
+    external: true
+ 

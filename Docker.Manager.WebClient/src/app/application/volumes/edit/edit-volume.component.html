@@ -1,0 +1,50 @@
+<div class="side-form">
+
+  <section fxLayout="row wrap" fxLayoutAlign="center center">
+    <form class="main-form" [formGroup]="dataFRM" novalidate autocomplete="off" style="width: 100%;">
+
+      <mat-card>
+        <mat-card-title>
+          <h2 mat-dialog-title> {{TITLE}}</h2>
+        </mat-card-title>
+
+        <mat-card-content>
+
+          <mat-form-field appearance="outline">
+            <mat-label>{{'APPLICATIONS.DOCKER_MANAGER.VOLUMES.NAME'|translate}}</mat-label>
+            <input matInput type="text" formControlName="name" id="name" cdkFocusInitial maxlength="100" required>
+            <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'100'} }}</mat-hint>
+            <mat-error *ngIf="hasError('name', 'required')">{{'SYSTEM.VALIDATION.NAME_REQUIRED'|translate}}</mat-error>
+            <mat-error *ngIf="hasError('name', 'maxlength')">
+              {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'100'} }}</mat-error>
+          </mat-form-field>
+
+          <ng-select formControlName="driver" id="driver" [items]="(driversList$|async)" bindLabel="name" bindValue="id"
+            [multiple]="false" [virtualScroll]="true" [clearable]="true" style="width: 100%;"
+            placeholder="{{'APPLICATIONS.DOCKER_MANAGER.VOLUMES.DRIVER'|translate}}">
+            <ng-template ng-option-tmp let-item="item" let-index="index">
+              <b>{{index}}</b> {{item.name}}
+            </ng-template>
+          </ng-select>
+
+          <br />
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+          <button mat-raised-button color="primary" [disabled]="!dataFRM.valid && isRequesting" tabindex="1" [loading]="isRequesting"
+            (click)="saveData()">
+            <mat-icon>save</mat-icon>
+            {{'SYSTEM.RECORD.SAVE'|translate}}
+          </button>
+
+          <button type="button" mat-raised-button color="warn" routerLink="/app/docker-volumes">
+            <mat-icon>clear</mat-icon>
+            {{'SYSTEM.RECORD.CANCEL'|translate}}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+
+    </form>
+
+  </section>
+</div>

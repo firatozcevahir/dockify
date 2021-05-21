@@ -1,0 +1,55 @@
+.mat-expansion-panel {
+  margin-bottom: 10px;
+  padding: 8px;
+}
+
+.app-template-img {
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.app-template-title {
+  font-weight: bold;
+}
+
+.app-template-description {
+  color: #aaa;
+}
+
+.example-action-buttons {
+  padding-bottom: 20px;
+}
+
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.template-detail-pane {
+  padding: 10px;
+  color: #8c8c8c;
+  font-size: 0.75rem;
+  border-radius: 7px;
+  background: #f7f7f7;
+  border: 1px solid #dfdfdf88;
+  height: 120px;
+  overflow: auto;
+}
+
+.template-detail-pane>h5 {
+  color: red;
+  font-weight: bold;
+}
+
+.template-prop-not-found {
+  text-align: center;
+  font-weight: 400;
+  color: #333;
+}

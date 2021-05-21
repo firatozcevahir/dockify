@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-content>
+    <ng-container *ngFor="let p of imageProgressData; let i = index">
+      <div *ngIf="i === 0" class="image-progress-title">
+        {{p.status}}
+      </div>
+      <div *ngIf="i !== 0 && p.id !== null" class="image-progress-content">
+        {{p.id.toString().substr(0, 4)}}...
+        <span style="font-size:.45rem;"><b>{{p.status}}</b></span>
+        <span class="example-fill-remaining-space"></span>
+        {{(((p.progress?.current + 1) * 100) / (p.progress?.total + 1)).toFixed()}}%
+      </div>
+      <div *ngIf="i !== 0 && p.status.startsWith('Status:')" class="image-progress-status">
+        {{ p.status }}
+      </div>
+    </ng-container>
+  </mat-card-content>
+</mat-card>

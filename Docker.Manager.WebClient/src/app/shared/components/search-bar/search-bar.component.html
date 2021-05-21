@@ -1,0 +1,13 @@
+<div class="content" fxLayout="column" fxLayoutAlign="center center">
+  <div class="search" fxLayout="row">
+    <mat-icon class="icon s-24">search</mat-icon>
+    <input matInput type="text" (keyup)="applyFilter()" [(ngModel)]="searchTerm" autocomplete="off" #searchBar
+      placeholder="{{'SYSTEM.RECORD.SEARCH'|translate}}" fxFlex cdkFocusInitial>
+    <mat-icon 
+      *ngIf="searchTerm && searchTerm !== ''"
+      (click)="searchTerm = ''; applyFilter()"
+      style="cursor: pointer;">
+      clear
+    </mat-icon>
+  </div>
+</div>

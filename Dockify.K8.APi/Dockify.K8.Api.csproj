@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <LangVersion>Latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="badisCore.Common" Version="2.0.*" />
+    <PackageReference Include="badisCore.Swagger" Version="2.0.4" />
+    <PackageReference Include="Kapitan.Kubernetes.Keda" Version="1.0.0-prerelease-20200821001606" />
+    <PackageReference Include="KubernetesClient" Version="4.0.4" />
+  </ItemGroup>
+
+</Project>

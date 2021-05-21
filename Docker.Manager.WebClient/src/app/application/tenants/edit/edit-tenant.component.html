@@ -1,0 +1,123 @@
+<div class="side-form">
+
+  <section fxLayout="row wrap" fxLayoutAlign="center center">
+    <form class="main-form" [formGroup]="dataFRM" novalidate autocomplete="off">
+      <mat-card>
+        <mat-card-title>
+          <h2 mat-dialog-title> {{TITLE}}</h2>
+        </mat-card-title>
+        <mat-card-content>
+
+          <mat-tab-group backgroundColor="primary">
+            <mat-tab label="{{'APPLICATIONS.TENANTS.TAB1'|translate}}">
+
+              <mat-form-field appearance="outline">
+                <mat-label>{{'APPLICATIONS.TENANTS.FIELDS.NAME'|translate}}</mat-label>
+
+                <input matInput type="text" formControlName="name" id="name" cdkFocusInitial maxlength="200" required>
+
+                <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'200'} }}</mat-hint>
+                <mat-error *ngIf="hasError('name', 'required')">{{'SYSTEM.VALIDATION.NAME_REQUIRED'|translate}}
+                </mat-error>
+                <mat-error *ngIf="hasError('name', 'maxlength')">
+                  {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'200'} }}</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>{{'APPLICATIONS.TENANTS.FIELDS.DNS_NAME'|translate}}</mat-label>
+
+                <input matInput type="text" formControlName="dnsName" id="dnsName" cdkFocusInitial maxlength="100"
+                  #dnsName>
+                <mat-hint align="end" aria-live="polite">{{dnsName.value.length}}</mat-hint>
+              </mat-form-field>
+
+              <br />
+              <mat-form-field appearance="outline">
+                <mat-label> {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.DOMAIN_NAME'|translate}} </mat-label>
+                <input matInput type="text" formControlName="domainName" id="domainName" cdkFocusInitial maxlength="200"
+                  #domainName>
+                <mat-hint align="end" aria-live="polite">{{domainName.value.length}}</mat-hint>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label> {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.HOST_NAME'|translate}} </mat-label>
+                <input matInput type="text" formControlName="hostName" id="hostName" cdkFocusInitial maxlength="200"
+                  #hostName>
+                <mat-hint align="end" aria-live="polite">{{hostName.value.length}}</mat-hint>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label> {{'APPLICATIONS.TENANTS.FIELDS.DATABASE'|translate}} </mat-label>
+                <input matInput type="text" formControlName="dataBase" id="dataBase" cdkFocusInitial maxlength="50"
+                  #dataBase>
+                <mat-hint align="end" aria-live="polite">{{dataBase.value.length}}</mat-hint>
+              </mat-form-field>
+
+              <!-- <tag-input formControlName="environment" id="environment" theme="dark" [blinkIfDupe]="true" [modelAsStrings]="true"
+            [trimTags]="false"
+            [secondaryPlaceholder]="'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.ENVIRONMENT'|translate"
+            placeholder="{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.ENVIRONMENT'|translate}}"></tag-input>
+          <br /> -->
+
+              <mat-form-field appearance="outline">
+                <mat-label>{{'APPLICATIONS.TENANTS.FIELDS.CONTACT_PERSON'|translate}}</mat-label>
+
+                <input matInput type="text" formControlName="contactPerson" id="contactPerson" cdkFocusInitial
+                  maxlength="50" #contactPerson>
+                <mat-hint align="end" aria-live="polite">{{contactPerson.value.length}}</mat-hint>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>{{'APPLICATIONS.TENANTS.FIELDS.TELEPHONE'|translate}}</mat-label>
+
+                <input matInput type="text" formControlName="telephoneNo" id="telephoneNo" cdkFocusInitial
+                  maxlength="20">
+                <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'20'} }}</mat-hint>
+                <mat-error *ngIf="hasError('telephoneNo', 'maxlength')">
+                  {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'20'} }}</mat-error>
+
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>{{'APPLICATIONS.TENANTS.FIELDS.EMAIL_ADDRESS'|translate}}</mat-label>
+
+                <input matInput type="text" formControlName="emailAddress" id="emailAddress" cdkFocusInitial
+                  maxlength="500">
+                <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'500'} }}</mat-hint>
+                <mat-error *ngIf="hasError('emailAddress', 'maxlength')">
+                  {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'500'} }}</mat-error>
+
+              </mat-form-field>
+
+            </mat-tab>
+
+            <mat-tab label="{{'APPLICATIONS.TENANTS.TAB2'|translate}}">
+              <br/>
+              <mat-form-field appearance="outline">
+                <mat-label>{{'APPLICATIONS.TENANTS.FIELDS.PRIVATE_STTINGS'|translate}}</mat-label>
+                <textarea matInput formControlName="environment" name="environment" cdkTextareaAutosize #settings
+                  #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="10" style="width: 100%; height: 100%;"></textarea>
+
+                  <mat-hint align="end" aria-live="polite">{{settings.value.length}}</mat-hint>
+              </mat-form-field>
+
+            </mat-tab>
+          </mat-tab-group>
+
+        </mat-card-content>
+
+          <mat-card-actions align="end">
+            <button mat-raised-button color="primary" [disabled]="!dataFRM.valid" tabindex="1" [loading]="isRequesting"
+              (click)="saveData()">
+              {{'SYSTEM.RECORD.SAVE'|translate}}
+            </button>
+
+            <button type="button" mat-raised-button color="warn" routerLink="/app/tenants">
+              {{'SYSTEM.RECORD.CANCEL'|translate}}
+            </button>
+          </mat-card-actions>
+      </mat-card>
+
+    </form>
+  </section>
+</div>

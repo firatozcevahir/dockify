@@ -1,0 +1,55 @@
+<mat-toolbar class="custom-header-toolbar">
+  <mat-toolbar-row>
+
+    <button mat-icon-button (click)="toggleSideBar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span> {{'SYSTEM.APP_NAME' | translate}} </span>
+
+    <span class="example-fill-remaining-space"></span>
+
+    <div fxLayout="row" fxLayoutAlign="end end">
+
+      <ul fxLayout="row" fxLayoutGap="10px">
+
+        <li>
+          <button mat-button routerLink="/app/tutorial">
+            <mat-icon>announcement</mat-icon>
+          </button>
+        </li>
+
+        <li>
+          <button mat-button [matMenuTriggerFor]="lang">
+            <mat-icon>languages</mat-icon>
+          </button>
+          <mat-menu #lang="matMenu">
+            <button mat-menu-item *ngFor="let item of languages" (click)="setLanguage(item)">
+              {{item.title}}
+            </button>
+          </mat-menu>
+        </li>
+
+        <li>
+          <button mat-button [matMenuTriggerFor]="menu2">
+            <mat-icon>person_outline</mat-icon>
+          </button>
+          <mat-menu #menu2="matMenu">
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>exit_to_app</mat-icon>
+              {{'SECURITY.LOGOUT'|translate}}
+            </button>
+            <!-- <button mat-menu-item (click)="changePassword()">
+              <mat-icon>person_outline</mat-icon>
+              {{'SECURITY.CHANGE_PASSWORD'|translate}}
+            </button> -->
+          </mat-menu>
+
+        </li>
+
+      </ul>
+
+    </div>
+
+  </mat-toolbar-row>
+</mat-toolbar>

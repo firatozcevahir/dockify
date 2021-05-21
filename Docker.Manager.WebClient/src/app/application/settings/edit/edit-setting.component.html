@@ -1,0 +1,89 @@
+<div class="side-form">
+
+  <section fxLayout="row wrap" fxLayoutAlign="center center">
+
+    <form class="main-form" [formGroup]="dataFRM" novalidate autocomplete="off">
+      <mat-card>
+        <mat-card-title>
+          <h2 mat-dialog-title> {{TITLE}}</h2>
+        </mat-card-title>
+
+        <mat-card-content>
+
+          <mat-form-field appearance="outline">
+            <mat-label>{{'APPLICATIONS.SETTINGS.FIELDS.NAME'|translate}}</mat-label>
+            <input matInput type="text" formControlName="name" id="name" cdkFocusInitial maxlength="100" required>
+            <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'100'} }}</mat-hint>
+            <mat-error *ngIf="hasError('name', 'required')">{{'SYSTEM.VALIDATION.NAME_REQUIRED'|translate}}</mat-error>
+            <mat-error *ngIf="hasError('name', 'maxlength')">
+              {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'100'} }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>{{'APPLICATIONS.SETTINGS.FIELDS.REGISTRY_URL'|translate}}</mat-label>
+            <input matInput type="text" class="form-control" formControlName="registryUrl" id="registryUrl">
+            <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'200'} }}</mat-hint>
+            <mat-error *ngIf="hasError('registryUrl', 'maxlength')">
+              {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'200'} }}</mat-error>
+
+          </mat-form-field>
+
+          <mat-slide-toggle class="example-margin" formControlName="authenticationRequired" id="authenticationRequired"
+            #authentication>
+            {{'APPLICATIONS.SETTINGS.FIELDS.AUTHENTICATION_REQUIRED'|translate}}
+          </mat-slide-toggle>
+
+          <div *ngIf="authentication.checked">
+
+            <mat-form-field appearance="outline">
+              <mat-label>{{'APPLICATIONS.SETTINGS.FIELDS.USER_NAME'|translate}}</mat-label>
+              <input matInput type="text" formControlName="userName" id="userName" cdkFocusInitial maxlength="50">
+
+              <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'50'} }}</mat-hint>
+              <mat-error *ngIf="hasError('userName', 'maxlength')">
+                {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'50'} }}</mat-error>
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>{{'APPLICATIONS.SETTINGS.FIELDS.PASSWORD'|translate}}</mat-label>
+              <input matInput type="text" formControlName="password" id="password" cdkFocusInitial maxlength="100">
+
+              <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'100'} }}</mat-hint>
+              <mat-error *ngIf="hasError('password', 'maxlength')">
+                {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'100'} }}</mat-error>
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>{{'APPLICATIONS.SETTINGS.FIELDS.PERSONAL_ACCESS_TOKEN'|translate}}</mat-label>
+              <input matInput type="text" formControlName="personalAccessToken" id="personalAccessToken" cdkFocusInitial
+                maxlength="200">
+
+              <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'200'} }}</mat-hint>
+              <mat-error *ngIf="hasError('personalAccessToken', 'maxlength')">
+                {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'200'} }}</mat-error>
+
+            </mat-form-field>
+
+          </div>
+          <br />
+          <br />
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+          <button mat-raised-button color="primary" [disabled]="!dataFRM.valid" tabindex="1" [loading]="isRequesting"
+            (click)="saveData()">
+            {{'SYSTEM.RECORD.SAVE'|translate}}
+          </button>
+
+          <button type="button" mat-raised-button color="warn" routerLink="/app/settings">
+            {{'SYSTEM.RECORD.CANCEL'|translate}}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+
+    </form>
+
+  </section>
+</div>

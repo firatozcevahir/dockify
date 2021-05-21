@@ -1,0 +1,36 @@
+
+.system-info-clickable-card{
+  justify-content: space-between;
+  cursor: pointer;
+}
+.system-info-clickable-card:hover{
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.system-info-clickable-card:active{
+    outline: none;
+}
+
+.system-info-clickable-card:focus{
+    outline: none;
+}
+
+.system-info-card-title{
+    font-size: 40px;
+    color: #4c61d5;
+}
+
+.system-info-card-desc{
+    font-size: .6rem;
+    color: #aaa;
+}
+
+.system-info-card-container{
+    padding: 5px;
+}
+
+.chart-panel {
+    height: auto;
+    width: 100%;
+    top: 20px;
+  }

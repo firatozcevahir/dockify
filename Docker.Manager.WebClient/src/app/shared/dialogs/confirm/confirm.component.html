@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>{{ data.title | translate }}</h2>
+<mat-dialog-content>
+  <div>
+    {{ data.message | translate }}
+  </div>
+  <form class="" [formGroup]="dataFRM" autocomplete="off">
+    <div *ngIf="data.type === serviceType.PruneContainer">
+      <mat-slide-toggle class="example-margin" formControlName="includeProtected" id="includeProtected">
+        {{'CONFIRM_MODAL.CON_INCLUDE_PROTECTED'|translate}}
+      </mat-slide-toggle>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-divider></mat-divider>
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" [loading]="isRequesting" (click)="pruneOperationConfirm()">
+    {{ 'SYSTEM.RECORD.CONFIRM' | translate }}
+  </button>
+  <button mat-raised-button (click)="cancelOperation()">
+    {{ 'SYSTEM.RECORD.CANCEL' | translate }}
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,192 @@
+{
+    "ID": "TUOI:DD4L:LERO:XXVM:GOMU:53SI:4FRS:C6RO:RF7S:G7WF:K5JF:EOO3",
+    "Containers": 13,
+    "ContainersRunning": 12,
+    "ContainersPaused": 0,
+    "ContainersStopped": 1,
+    "Images": 18,
+    "Driver": "overlay2",
+    "DriverStatus": [
+        [
+            "Backing Filesystem",
+            "extfs"
+        ],
+        [
+            "Supports d_type",
+            "true"
+        ],
+        [
+            "Native Overlay Diff",
+            "true"
+        ]
+    ],
+    "SystemStatus": null,
+    "Plugins": {
+        "Volume": [
+            "local"
+        ],
+        "Network": [
+            "bridge",
+            "host",
+            "ipvlan",
+            "macvlan",
+            "null",
+            "overlay"
+        ],
+        "Authorization": null,
+        "Log": [
+            "awslogs",
+            "fluentd",
+            "gcplogs",
+            "gelf",
+            "journald",
+            "json-file",
+            "local",
+            "logentries",
+            "splunk",
+            "syslog"
+        ]
+    },
+    "MemoryLimit": true,
+    "SwapLimit": true,
+    "KernelMemory": true,
+    "KernelMemoryTCP": true,
+    "CpuCfsPeriod": true,
+    "CpuCfsQuota": true,
+    "CPUShares": true,
+    "CPUSet": true,
+    "PidsLimit": true,
+    "IPv4Forwarding": true,
+    "BridgeNfIptables": false,
+    "BridgeNfIp6tables": false,
+    "Debug": true,
+    "NFd": 141,
+    "OomKillDisable": true,
+    "NGoroutines": 233,
+    "SystemTime": "2020-09-03T13:28:17.1396524Z",
+    "LoggingDriver": "json-file",
+    "CgroupDriver": "cgroupfs",
+    "NEventsListener": 3,
+    "KernelVersion": "4.19.104-microsoft-standard",
+    "OperatingSystem": "Docker Desktop",
+    "OSType": "linux",
+    "Architecture": "x86_64",
+    "IndexServerAddress": "https://index.docker.io/v1/",
+    "RegistryConfig": {
+        "AllowNondistributableArtifactsCIDRs": [],
+        "AllowNondistributableArtifactsHostnames": [],
+        "InsecureRegistryCIDRs": [
+            "127.0.0.0/8"
+        ],
+        "IndexConfigs": {
+            "docker.io": {
+                "Name": "docker.io",
+                "Mirrors": [],
+                "Secure": true,
+                "Official": true
+            }
+        },
+        "Mirrors": []
+    },
+    "NCPU": 4,
+    "MemTotal": 6624919552,
+    "GenericResources": null,
+    "DockerRootDir": "/var/lib/docker",
+    "HttpProxy": "",
+    "HttpsProxy": "",
+    "NoProxy": "",
+    "Name": "docker-desktop",
+    "Labels": [],
+    "ExperimentalBuild": false,
+    "ServerVersion": "19.03.12",
+    "ClusterStore": "",
+    "ClusterAdvertise": "",
+    "Runtimes": {
+        "runc": {
+            "path": "runc"
+        }
+    },
+    "DefaultRuntime": "runc",
+    "Swarm": {
+        "NodeID": "ngd9kho2vrst6g6oi66spf5j1",
+        "NodeAddr": "10.34.4.77",
+        "LocalNodeState": "active",
+        "ControlAvailable": true,
+        "Error": "",
+        "RemoteManagers": [
+            {
+                "NodeID": "ngd9kho2vrst6g6oi66spf5j1",
+                "Addr": "10.34.4.77:2377"
+            }
+        ],
+        "Nodes": 1,
+        "Managers": 1,
+        "Cluster": {
+            "ID": "q2yw7fwxr4skd8kl4o2cr4rg6",
+            "Version": {
+                "Index": 12
+            },
+            "CreatedAt": "2020-09-01T09:48:02.9981674Z",
+            "UpdatedAt": "2020-09-02T09:48:04.6089389Z",
+            "Spec": {
+                "Name": "default",
+                "Labels": {},
+                "Orchestration": {
+                    "TaskHistoryRetentionLimit": 5
+                },
+                "Raft": {
+                    "SnapshotInterval": 10000,
+                    "KeepOldSnapshots": 0,
+                    "LogEntriesForSlowFollowers": 500,
+                    "ElectionTick": 10,
+                    "HeartbeatTick": 1
+                },
+                "Dispatcher": {
+                    "HeartbeatPeriod": 5000000000
+                },
+                "CAConfig": {
+                    "NodeCertExpiry": 7776000000000000
+                },
+                "TaskDefaults": {},
+                "EncryptionConfig": {
+                    "AutoLockManagers": false
+                }
+            },
+            "TLSInfo": {
+                "TrustRoot": "-----BEGIN CERTIFICATE-----\nMIIBajCCARCgAwIBAgIUFkvpW9g5XX//cDvtSvitJVtF7TYwCgYIKoZIzj0EAwIw\nEzERMA8GA1UEAxMIc3dhcm0tY2EwHhcNMjAwOTAxMDk0MzAwWhcNNDAwODI3MDk0\nMzAwWjATMREwDwYDVQQDEwhzd2FybS1jYTBZMBMGByqGSM49AgEGCCqGSM49AwEH\nA0IABAthdoG6eueWDa4pQyf3X/7z23x67SfOvsY3WBpeyZZN9oLr0p1mw3jzLpai\nNC7s9BhwvV9xlJEaCJz5FpLON4ajQjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMB\nAf8EBTADAQH/MB0GA1UdDgQWBBRnr3EY4IyIc7VPTktEUmHWI50NNDAKBggqhkjO\nPQQDAgNIADBFAiBVsI6ae9GYuJcZbXAc5YVpvxoZlfGCTlAwcxZrDXqMJQIhAIgP\n1nj9da9A4nuwOSVJFwC+gyvryrIz6RgaRw42oRxo\n-----END CERTIFICATE-----\n",
+                "CertIssuerSubject": "MBMxETAPBgNVBAMTCHN3YXJtLWNh",
+                "CertIssuerPublicKey": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEC2F2gbp655YNrilDJ/df/vPbfHrtJ86+xjdYGl7Jlk32guvSnWbDePMulqI0Luz0GHC9X3GUkRoInPkWks43hg=="
+            },
+            "RootRotationInProgress": false,
+            "DefaultAddrPool": [
+                "10.10.0.0/8",
+                "20.20.0.0/8"
+            ],
+            "SubnetSize": 24,
+            "DataPathPort": 4789
+        }
+    },
+    "LiveRestoreEnabled": false,
+    "Isolation": "",
+    "InitBinary": "docker-init",
+    "ContainerdCommit": {
+        "ID": "7ad184331fa3e55e52b890ea95e65ba581ae3429",
+        "Expected": "7ad184331fa3e55e52b890ea95e65ba581ae3429"
+    },
+    "RuncCommit": {
+        "ID": "dc9208a3303feef5b3839f4323d9beb36df0a9dd",
+        "Expected": "dc9208a3303feef5b3839f4323d9beb36df0a9dd"
+    },
+    "InitCommit": {
+        "ID": "fec3683",
+        "Expected": "fec3683"
+    },
+    "SecurityOptions": [
+        "name=seccomp,profile=default"
+    ],
+    "ProductLicense": "Community Engine",
+    "Warnings": [
+        "WARNING: bridge-nf-call-iptables is disabled",
+        "WARNING: bridge-nf-call-ip6tables is disabled"
+    ]
+}

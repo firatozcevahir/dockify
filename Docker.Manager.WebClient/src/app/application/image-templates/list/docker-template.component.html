@@ -1,0 +1,185 @@
+<div fxLayout="row" fxLayoutAlign="space-between">
+
+  <div fxFlex="100%">
+    <mat-toolbar class="custom-mat-toolbar">
+      {{'APPLICATIONS.DOCKER_IMAGE.TITLE'| translate}}
+      <button mat-icon-button (click)="loadData()" color="primary" title="{{'SYSTEM.REFRESH' | translate}}">
+        <mat-icon>cached</mat-icon>
+      </button>
+      <span class="example-fill-remaining-space"></span>
+    </mat-toolbar>
+
+    <tps-search-bar></tps-search-bar>
+    <mat-progress-bar mode='indeterminate' *ngIf="isRequesting"></mat-progress-bar>
+    <br>
+    <mat-card *ngIf="!isRequesting && (isServerError || appTemplates.length === 0)">
+      <mat-card-content style="text-align: center;">
+        <img src="assets/images/is-requesting.png" *ngIf="isRequesting" />
+        <ng-container *ngIf="!isRequesting && !isServerError && appTemplates.length === 0">
+          <img src="assets/images/no-data.png" />
+          <br>
+          <span class="no-records">
+            {{'SYSTEM.NO_RECORDS' | translate}}
+          </span>
+          <button mat-button color="primary" routerLink="add">
+            {{'SYSTEM.CLICK_TO_CREATE' | translate}}
+          </button>
+        </ng-container>
+        <ng-container *ngIf="isServerError">
+          <img src="assets/images/no-data.png" />
+          <br>
+          <span class="sth-went-wrong">
+            {{'SYSTEM.STH_WENT_WRONG' | translate}}
+          </span>
+          <button mat-button color="primary" (click)="loadData()">
+            {{'SYSTEM.TRY_AGAIN' | translate}}
+          </button>
+        </ng-container>
+      </mat-card-content>
+    </mat-card>
+    <mat-accordion class="example-headers-align" [multi]="false" #accordion="matAccordion" *ngIf="!isRequesting && !isServerError">
+      <mat-expansion-panel *ngFor="let appTemplate of appTemplates | filter: searchTerm">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="app-template-img" style="background-image: url({{appTemplate.logoURL}});">
+              <img [src]="appTemplate.logoURL" (error)="onImgError($event)" style="display: none;">
+            </div>
+          </mat-panel-title>
+          <mat-panel-description>
+            <div class="app-template-title">{{appTemplate.templateTitle}}</div>
+
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+
+        <div class="app-template-description"> {{appTemplate.description}} </div>
+        <mat-divider></mat-divider>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxFlex="25" fxFlex.md="25" fxFlex.sm="25" fxFlex.xs="100" fxLayout="column">
+            <div class="template-detail-pane">
+              <h5>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.PROPERTIES'|translate}}</h5>
+              <mat-divider></mat-divider>
+
+              {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.AUTO_UPDATE'|translate}} :
+              <span [style.color]="appTemplate.autoUpdate ? 'green' : 'red'">
+                {{appTemplate.autoUpdate ? '✔' : '✖'}}
+              </span><br />
+
+              {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.START_CONTAINER'|translate}} :
+              <span [style.color]="appTemplate.startContainer ? 'green' : 'red'">
+                {{appTemplate.startContainer ? '✔' : '✖'}}
+              </span><br />
+
+              {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.PUBLISH_RANDOM_PORTS'|translate}} :
+              <span [style.color]="appTemplate.publishAllPorts ? 'green' : 'red'">
+                {{appTemplate.publishAllPorts ? '✔' : '✖'}}
+              </span><br />
+
+              {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.PROTECTED'|translate}} :
+              <span [style.color]="appTemplate.isProtected ? 'green' : 'red'">
+                {{appTemplate.isProtected ? '✔' : '✖'}}
+              </span><br />
+
+              {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.ALWAYS_PULL_IMAGE'|translate}} :
+              <span [style.color]="appTemplate.alwaysPullImage ? 'green' : 'red'">
+                {{appTemplate.alwaysPullImage ? '✔' : '✖'}}
+              </span><br />
+            </div>
+          </div>
+          <div fxFlex="25" fxFlex.md="25" fxFlex.sm="25" fxFlex.xs="100" fxLayout="column">
+            <div class="template-detail-pane">
+              <h5>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.BINDS'|translate}}</h5>
+              <mat-divider></mat-divider>
+              <ng-container *ngIf="!appTemplate.binds">
+                <div class="template-prop-not-found">
+                  {{'APPLICATIONS.DOCKER_IMAGE.FIELDS.PROP_NOT_FOUND'|translate}}
+                </div>
+              </ng-container>
+              <ng-container *ngFor="let bind of appTemplate.binds">
+                {{bind}} <br />
+              </ng-container>
+              <br />
+              <h5>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.PORT_NO'|translate}}</h5>
+              <mat-divider></mat-divider>
+              <ng-container *ngIf="!appTemplate.ports">
+                <div class="template-prop-not-found" *ngIf="appTemplate.publishAllPorts">
+                  {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.PUBLISH_RANDOM_PORTS'|translate}}
+                </div>
+
+                <div class="template-prop-not-found" *ngIf="!appTemplate.publishAllPorts">
+                  {{'APPLICATIONS.DOCKER_IMAGE.FIELDS.PROP_NOT_FOUND'|translate}}
+                </div>
+              </ng-container>
+              <ng-container *ngFor="let port of appTemplate.ports">
+                {{port}} <br />
+              </ng-container>
+            </div>
+          </div>
+          <div fxFlex="25" fxFlex.md="25" fxFlex.sm="25" fxFlex.xs="100" fxLayout="column">
+            <div class="template-detail-pane">
+              <h5>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.ENVIRONMENT'|translate}}</h5>
+              <mat-divider></mat-divider>
+              <div class="template-prop-not-found" *ngIf="!appTemplate.env">
+                {{'APPLICATIONS.DOCKER_IMAGE.FIELDS.PROP_NOT_FOUND'|translate}}
+              </div>
+              <ng-container *ngFor="let env of appTemplate.env?.split('\n')">
+                {{env}} <br />
+              </ng-container>
+            </div>
+          </div>
+          <div fxFlex="25" fxFlex.md="25" fxFlex.sm="25" fxFlex.xs="100" fxLayout="column">
+            <div class="template-detail-pane">
+              <h5>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.COMMAND'|translate}}</h5>
+              <mat-divider></mat-divider>
+              <div class="template-prop-not-found" *ngIf="!appTemplate.cmd">
+                {{'APPLICATIONS.DOCKER_IMAGE.FIELDS.PROP_NOT_FOUND'|translate}}
+              </div>
+              {{appTemplate.cmd}}
+              <br />
+              <h5>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.ENTRY_POINT'|translate}}</h5>
+              <mat-divider></mat-divider>
+              <div class="template-prop-not-found" *ngIf="!appTemplate.entryPoint">
+                {{'APPLICATIONS.DOCKER_IMAGE.FIELDS.PROP_NOT_FOUND'|translate}}
+              </div>
+              {{appTemplate.entryPoint}}
+              <br />
+            </div>
+          </div>
+        </div>
+        <mat-action-row>
+          <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">
+            <mat-icon>settings</mat-icon> {{'SYSTEM.RECORD.ACTION_BUTTON'| translate}}
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+
+            <button mat-menu-item [routerLink]="['edit', appTemplate.id, 'edit']">
+              <mat-icon class="mat-18">edit</mat-icon> {{'SYSTEM.RECORD.STATE_EDIT'|translate}}
+            </button>
+
+            <button mat-menu-item [routerLink]="['edit', appTemplate.id, 'clone']">
+              <mat-icon class="mat-18">content_copy</mat-icon> {{'SYSTEM.RECORD.CLONE'|translate}}
+            </button>
+
+            <button mat-menu-item color="warn" (click)="delete(appTemplate)">
+              <mat-icon class="mat-18">delete</mat-icon> {{'SYSTEM.RECORD.DELETE'|translate}}
+            </button>
+
+          </mat-menu>
+
+        </mat-action-row>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+  </div>
+
+  <button mat-fab align="end" id="my-add-button" color="primary" routerLink="add">
+    <mat-icon>add</mat-icon>
+  </button>
+
+</div>
+
+<div class="view-side-form">
+  <router-outlet></router-outlet>
+</div>

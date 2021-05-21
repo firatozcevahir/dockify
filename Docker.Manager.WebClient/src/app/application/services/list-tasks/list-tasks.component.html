@@ -1,0 +1,106 @@
+<mat-toolbar color="danger">
+    {{'SYSTEM.RECORD.LIST_TASKS'|translate}} |
+    <span class="header-image-title">{{title}}</span>
+    <span class="example-fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+
+    <div fxLayout="row" fxLayoutAlign="space-between">
+
+        <div fxFlex="100%">
+            <mat-card>
+                <mat-card-header>
+                    <form class="main-form" [formGroup]="dataFRM" novalidate autocomplete="off">
+                        <mat-label>{{'APPLICATIONS.SWARM.SERVICE.REPLICATED'|translate}}</mat-label>
+                        <mat-slider thumbLabel tickInterval="1" min="0" max="50" [value]="dataResult.length"
+                            formControlName="replicas" id="replicas">
+                        </mat-slider>
+
+                        <button mat-raised-button color="primary" tabindex="1" (click)="updateReplicas()" [disabled]="!dataFRM.valid || !dataFRM.dirty">
+                          scale up/down
+                        </button>
+                    </form>
+
+                    <span class="example-fill-remaining-space"></span>
+
+                    <mat-button-toggle-group name="fontStyle" aria-label="Font Style" size="small">
+
+                        <mat-button-toggle (click)="loadData()">
+                            <mat-icon>refresh</mat-icon>
+                        </mat-button-toggle>
+                    </mat-button-toggle-group>
+                </mat-card-header>
+
+                <br />
+                <mat-card-content>
+
+                    <div class="t-container mat-elevation-z0">
+
+                        <table mat-table [dataSource]="dataSource" class="table" matSort>
+                            <ng-container matColumnDef="status">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    Status
+                                </th>
+                                <td mat-cell *matCellDef="let element" data-label="status">
+                                    <span
+                                        class="service-task-state service-task-state-{{getStateName(element.status.state).toLowerCase()}}">
+                                        {{ 'APPLICATIONS.SWARM.SERVICE.TASKS.STATE.' + getStateName(element.status.state) | translate}}
+                                    </span>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="id">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    ID
+                                </th>
+                                <td mat-cell *matCellDef="let element" data-label="id"> {{element.id}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="slot">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    slot
+                                </th>
+                                <td mat-cell *matCellDef="let element" data-label="slot"> {{element.slot}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="nodeID">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    nodeID
+                                </th>
+                                <td mat-cell *matCellDef="let element" data-label="nodeID"> {{element.nodeID}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="updatedAt">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    updatedAt
+                                </th>
+                                <td mat-cell *matCellDef="let element" data-label="updatedAt">
+                                    <span title="{{element.updatedAt}}">{{element.updatedAt | timeAgo}}</span> </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+                            <tr mat-row [ngClass]="{'make-gold': row.isLockedOut }"
+                                *matRowDef="let row; columns: displayedColumns;">
+                            </tr>
+
+                        </table>
+                    </div>
+
+                </mat-card-content>
+
+                <mat-card-footer>
+                    <!-- <mat-paginator #paginator [length]="itemCount" [pageSize]="10"
+                      [pageSizeOptions]="[5, 10, 20, 50, 100, 200, 400, 1000]" (page)="pageChanged($event)"
+                      showFirstLastButtons="true">
+                    </mat-paginator> -->
+                </mat-card-footer>
+
+            </mat-card>
+        </div>
+    </div>
+
+</mat-dialog-content>

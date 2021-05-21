@@ -1,0 +1,55 @@
+<div fxFlex fxLayout="column" fxLayoutGap="10px">
+  <div fxLayout="row wrap">
+    <mat-toolbar class="custom-mat-toolbar ">
+      {{'REGISTRY_MANAGER.TITLE'| translate}} - {{'REGISTRY_MANAGER.FIELDS.REPOSITORIES' | translate}}
+      <span class="example-fill-remaining-space"></span>
+      <tps-search-bar></tps-search-bar>
+      <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+        <mat-button-toggle>
+          <mat-icon>refresh</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </mat-toolbar>
+
+    <mat-spinner *ngIf="isRequesting" diameter="70"></mat-spinner>
+    <ng-container *ngIf="!isRequesting">
+      <div fxFlex="20" fxFlex.md="33" fxFlex.sm="50" fxFlex.xs="50" fxLayout="column" *ngFor="let repo of repositories">
+        <tps-widget>
+          <div class="tps-widget-front mat-elevation-z1">
+            <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+              <div></div>
+
+              <button mat-icon-button tpsWidgetToggle aria-label="more" (click)="getRegistryCatalogTags(repo)">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+            </div>
+
+            <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+              {{repo.reponame}}
+            </div>
+
+            <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+              <button mat-icon-button aria-label="delete" color="warn" (click)="deleteImageFromRegistry(repo)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+
+          </div>
+
+          <div class="tps-widget-back p-16 pt-32 mat-elevation-z1">
+            <button mat-icon-button tpsWidgetToggle class="tps-widget-flip-button" aria-label="Flip widget">
+              <mat-icon class="s-16">close</mat-icon>
+            </button>
+
+            <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+              {{repo.reponame}} <br />
+              Tags: {{repo.tags}}
+              <mat-spinner diameter="20" *ngIf="repo.isRequestingTags"></mat-spinner>
+            </div>
+
+          </div>
+        </tps-widget>
+      </div>
+    </ng-container>
+  </div>
+</div>

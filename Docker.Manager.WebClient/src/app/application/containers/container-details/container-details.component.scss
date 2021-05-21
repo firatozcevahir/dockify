@@ -1,0 +1,32 @@
+
+
+.container-detail-table th {
+  text-align: left;
+  padding: 10px;
+  background: #dedede;
+}
+
+.container-detail-table td {
+  padding: 10px;
+  border-bottom: 1px solid #aaa;
+}
+
+.container-detail-table mat-card {
+  margin: 25px 0;
+  background: #f8f8f8;
+}
+.container-detail-table input {
+  margin-right: 5px;
+  border: 1px solid #ddd;
+  padding: 11.5px;
+  border-radius: 4px;
+}
+
+.container-detail-table td:nth-child(1) {
+  font-weight: 500;
+}
+
+.container-detail-table tfoot td {
+  border: none;
+  text-align: right;
+}

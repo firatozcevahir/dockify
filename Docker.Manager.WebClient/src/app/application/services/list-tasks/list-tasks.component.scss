@@ -1,0 +1,34 @@
+.service-task-state {
+    padding: 3px 7px;
+    border-radius: 4px;
+    font-weight: 300;
+    background: rgb(131, 131, 131);
+    color: #fff;
+}
+
+.service-task-state-running {
+    background: #2db700;
+}
+
+.service-task-state-new {
+    background: #00b79f;
+}
+.service-task-state-preparing {
+    background: #b7b400;
+}
+
+.service-task-state-starting {
+    background: #00924e;
+}
+
+.service-task-state-pending {
+    background: #00788d;
+}
+
+.service-task-state-ready {
+    background: rgb(134, 134, 134);
+}
+
+.service-task-state-accepted {
+    background: #0176ac;
+}

@@ -1,0 +1,104 @@
+<div class="logo-section">
+  <div class="logo-section__wrapper">
+    <img class="logo-section__logo" src="../assets/images/logo.png" />
+    <h4 class="logo-section__title"> {{displayName}}</h4>
+  </div>
+</div>
+
+<mat-nav-list>
+
+  <!-- <div class="profile-card">
+    <img src="../../../assets/images/logo.png" alt="Bakelor.." />
+    <p>
+      {{displayName}}
+    </p>
+  </div> -->
+
+  <h2 matSubheader class="sidenav-subheader">{{'SYSTEM.MENU'|translate}}</h2>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard/home">
+    {{'DASHBOARD.TITLE' | translate}}
+    <span class="example-fill-remaining-space"></span>
+    <mat-icon>dashboard</mat-icon>
+  </a>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/app/image-template">
+    {{'APPLICATIONS.DOCKER_IMAGE.TITLE' | translate}}
+    <span class="example-fill-remaining-space"></span>
+    <mat-icon>view_array</mat-icon>
+  </a>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/app/docker-manager">
+    {{'APPLICATIONS.DOCKER_MANAGER.TITLE' | translate}}
+    <span class="example-fill-remaining-space"></span>
+    <mat-icon>view_carousel</mat-icon>
+  </a>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/app/docker-containers">
+    {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.TITLE' | translate}}
+    <span class="example-fill-remaining-space"></span>
+    <mat-icon>view_module</mat-icon>
+  </a>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/app/docker-volumes">
+    {{'APPLICATIONS.DOCKER_MANAGER.VOLUMES.TITLE' | translate}}
+    <span class="example-fill-remaining-space"></span>
+    <mat-icon>storage</mat-icon>
+  </a>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/app/docker-networks">
+    {{'APPLICATIONS.DOCKER_MANAGER.NETWORKS.TITLE' | translate}}
+    <span class="example-fill-remaining-space"></span>
+    <mat-icon>device_hub</mat-icon>
+  </a>
+
+  <h2 matSubheader class="sidenav-subheader">{{'APPLICATIONS.SETTINGS.TITLE'|translate}}</h2>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/app/tenants">
+    {{'APPLICATIONS.TENANTS.TITLE' | translate}}
+    <span class="example-fill-remaining-space"></span>
+    <mat-icon>business</mat-icon>
+  </a>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/app/settings">
+    {{'APPLICATIONS.SETTINGS.TITLE' | translate}}
+    <span class="example-fill-remaining-space"></span>
+    <mat-icon>settings</mat-icon>
+  </a>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/app/shell-scripts">
+    {{'APPLICATIONS.SHELLSCRIPTS.TITLE' | translate}}
+    <span class="example-fill-remaining-space"></span>
+    <mat-icon>code</mat-icon>
+  </a>
+
+  <h2 matSubheader class="sidenav-subheader">{{'APPLICATIONS.K8.MENU' | translate}}</h2>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/app/swarm">
+    {{'APPLICATIONS.SWARM.LIST' | translate}}
+    <span class="example-fill-remaining-space"></span>
+    <mat-icon>poll</mat-icon>
+  </a>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/app/services">
+    {{'APPLICATIONS.DOCKER_MANAGER.SERVICES.TITLE' | translate}}
+    <span class="example-fill-remaining-space"></span>
+    <mat-icon>view_comfy</mat-icon>
+  </a>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/app/k8">
+    {{'APPLICATIONS.K8.TITLE' | translate}}
+    <span class="example-fill-remaining-space"></span>
+    <mat-icon>device_hub</mat-icon>
+  </a>
+
+  <!-- <h2 matSubheader class="sidenav-subheader">{{'REGISTRY_MANAGER.TITLE'|translate}}</h2>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/registry-manager/home">
+    {{'REGISTRY_MANAGER.TITLE' | translate}}
+    <span class="example-fill-remaining-space"></span>
+    <mat-icon>list</mat-icon>
+  </a> -->
+
+  <!-- <tps-process-visualization></tps-process-visualization> -->
+
+</mat-nav-list>

@@ -1,0 +1,59 @@
+<div fxFlex fxLayout="column" fxLayoutGap="10px">
+
+  <div fxLayout="row wrap">
+    <mat-toolbar class="custom-mat-toolbar">
+      <mat-toolbar-row>
+        {{'DASHBOARD.TITLE' | translate }}
+         
+      <button mat-icon-button (click)="loadSystemInfo()" color="primary" title="{{'SYSTEM.REFRESH' | translate}}">
+        <mat-icon>cached</mat-icon>
+      </button>
+        <span class="example-fill-remaining-space"></span>
+
+
+        <!-- <button mat-raised-button (click)="()">
+          <mat-icon>refresh</mat-icon>
+        </button> -->
+
+        <!--  <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+          <mat-button-toggle (click)="loadSystemInfo()">
+            <mat-icon>refresh</mat-icon>
+          </mat-button-toggle>
+        </mat-button-toggle-group> -->
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <small>
+          {{ 'DASHBOARD.CPU' | translate }}: {{systemInfo.ncpu }} |
+          {{ 'DASHBOARD.MEMORY' | translate }}: {{systemInfo.memTotal | formatbytes:2}} -
+          {{'DASHBOARD.VERSION' | translate}} {{systemInfo.serverVersion}}
+        </small>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div fxFlex="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" class="system-info-card-container">
+
+      <tps-image-graph></tps-image-graph>
+
+    </div>
+
+    <div fxFlex="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" class="system-info-card-container">
+
+      <tps-container-graph></tps-container-graph>
+
+    </div>
+
+    <div fxFlex="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" class="system-info-card-container">
+
+      <tps-volume-graph></tps-volume-graph>
+
+    </div>
+
+    <div fxFlex="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" class="system-info-card-container">
+
+      <tps-network-graph></tps-network-graph>
+
+    </div>
+
+  </div>
+
+</div>

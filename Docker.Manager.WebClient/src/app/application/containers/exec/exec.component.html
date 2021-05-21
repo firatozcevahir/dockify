@@ -1,0 +1,54 @@
+<mat-toolbar>
+  {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.CLI' | translate}} |
+  <span class="example-fill-remaining-space"></span>
+  <mat-spinner *ngIf="isRequesting" diameter="20"></mat-spinner>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+      <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+
+
+<mat-dialog-content>
+  <ng-container *ngIf="!isConnected">
+    <mat-form-field appearance="fill">
+      <mat-label>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.COMMAND' | translate}}</mat-label>
+      <mat-select #rootCmd value="/bin/sh">
+        <mat-option value="/bin/bash">/bin/bash</mat-option>
+        <mat-option value="/bin/sh">/bin/sh</mat-option>
+        <mat-option value="/bin/ash">/bin/ash</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.USER' | translate}}</mat-label>
+      <input matInput type="text" placeholder="root" #userInput value="root">
+    </mat-form-field>
+    <button
+    mat-raised-button
+    color="primary"
+    (click)="execCreate(userInput.value,rootCmd.value)">
+    {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.CONNECT' | translate}}
+  </button>
+  </ng-container>
+
+  <ng-container *ngIf="isConnected">
+    <button
+    mat-raised-button
+    (click)="execCommand('exit')">
+      {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.DISCONNECT' | translate}}
+    </button>
+    <hr>
+    <!-- CONSOLE HERE -->
+    <div class="console" >
+      <div class="consolebody" #consoleBody (click)="focusCliInput()">
+        <ng-container *ngFor="let line of cliLines">
+          <p>{{line}}</p>
+        </ng-container>
+        <p>
+          <span *ngIf="!isRequesting">{{ workingDir }}# > </span>
+          <input type="text" (keydown)="handleKeyPress($event)" autofocus #cliInput>
+        </p>
+      </div>
+    </div>
+    <!--CONSOLE HERE END -->
+  </ng-container>
+</mat-dialog-content>

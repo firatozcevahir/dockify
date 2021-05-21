@@ -1,0 +1,40 @@
+
+// Search Bar
+.content {
+  width: 100%;
+  /* max-width: 512px !important; */
+
+  .search {
+    height:48px;
+    padding: 12px;
+    width: 100%;
+    background: #fff;
+    border-radius: 0;
+    border-bottom: ridge 2px;
+    color: #000;    
+      input {
+          padding: 0 0 0 16px;
+      }
+  }
+
+  .back-link {
+      font-size: 15px;
+      text-align: center;
+  }
+}
+
+
+.mat-input-element {
+  font: inherit;
+  background: transparent;
+  color: currentColor;
+  border: none;
+  outline: none;
+  padding: 0;
+  font-weight: 300;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  vertical-align: bottom;
+  text-align: inherit;
+}

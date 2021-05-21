@@ -1,0 +1,67 @@
+<div class="side-form">
+
+  <section fxLayout="row wrap" fxLayoutAlign="center center">
+    <form class="main-form" [formGroup]="dataFRM" novalidate autocomplete="off">
+      <mat-card>
+        <mat-card-title>
+          <h2 mat-dialog-title> {{TITLE}}</h2>
+        </mat-card-title>
+
+        <mat-card-content>
+
+          <mat-form-field>
+            <mat-placeholder> {{'APPLICATIONS.SWARM.FIELDS.LISTEN_ADDRESS'|translate}} </mat-placeholder>
+            <input matInput type="text" class="form-control" formControlName="listenAddr" id="listenAddr" maxlength="50"
+              required>
+
+            <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'50'} }}</mat-hint>
+            <mat-error *ngIf="hasError('listenAddr', 'maxlength')">
+              {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'50'} }}</mat-error>
+
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'APPLICATIONS.SWARM.FIELDS.ADVERTISE_ADDRESS'|translate}}"
+              formControlName="advertiseAddr" id="advertiseAddr" cdkFocusInitial maxlength="50" required>
+
+            <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'500'} }}</mat-hint>
+            <mat-error *ngIf="hasError('advertiseAddr', 'required')">{{'SYSTEM.VALIDATION.NAME_REQUIRED'|translate}}
+            </mat-error>
+            <mat-error *ngIf="hasError('advertiseAddr', 'maxlength')">
+              {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'50'} }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'APPLICATIONS.SWARM.FIELDS.DATA_PATH_ADDRESS'|translate}}"
+              formControlName="dataPathAddr" id="dataPathAddr" cdkFocusInitial maxlength="20">
+
+            <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'20'} }}</mat-hint>
+            <mat-error *ngIf="hasError('dataPathAddr', 'maxlength')">
+              {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'20'} }}</mat-error>
+          </mat-form-field>
+
+          <div>
+            <tag-input formControlName="remoteAddrs" id="remoteAddrs" theme="dark" [blinkIfDupe]="true"
+              [modelAsStrings]="true" [trimTags]="false"
+              [secondaryPlaceholder]="'APPLICATIONS.SWARM.FIELDS.DEFAULT_ADDRESS_POOL'|translate"
+              placeholder="{{'APPLICATIONS.SWARM.FIELDS.DEFAULT_ADDRESS_POOL'|translate}}">
+            </tag-input>
+          </div>
+
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+          <button mat-raised-button color="primary" [disabled]="!dataFRM.valid" tabindex="1" (click)="saveData()" [loading]="isRequesting">
+            {{'SYSTEM.RECORD.SAVE'|translate}}
+          </button>
+
+          <button type="button" mat-raised-button color="warn" routerLink="/app/swarm">
+            {{'SYSTEM.RECORD.CANCEL'|translate}}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+
+    </form>
+
+  </section>
+</div>

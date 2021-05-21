@@ -1,0 +1,14 @@
+.mat-list-item {
+    font-size: .8rem;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.mat-list-item:hover {
+    background: #ddd;
+}
+
+.mat-line:nth-child(n+2) {
+    color: #273a98;
+    font-size: 0.8rem !important;
+}

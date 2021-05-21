@@ -1,0 +1,62 @@
+<mat-toolbar color="danger">
+  {{'SYSTEM.RECORD.CONTAINER_STATS'|translate}} | 
+  <span class="header-container-title">{{ containerName }}</span>
+  <span class="header-image-title small-image-name">{{ imageName }}</span>
+  <span class="example-fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose(false)" tabIndex="-1">
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-grid-list cols="1" rowHeight="100px" *ngIf="stats === null">
+  <mat-grid-tile>
+    <mat-card align="center">
+      <mat-card-title>
+        {{ 'SYSTEM.RECORD.CONTAINER_NOT_RUNNING' | translate }}
+      </mat-card-title>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list cols="2" rowHeight="100px" *ngIf="stats !== null">
+  <mat-grid-tile>
+    <mat-card align="center">
+      <mat-card-title>
+        {{ stats?.cpuUsage.toFixed(2) }}%
+      </mat-card-title>
+      <mat-card-content>
+        {{ 'SYSTEM.RECORD.CPU_USAGE' | translate }}
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card align="center">
+      <mat-card-title>
+        {{ stats?.memoryUsage | formatbytes:2 }}
+      </mat-card-title>
+      <mat-card-content>
+        {{ 'SYSTEM.RECORD.MEMORY_USAGE'| translate }}
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card align="center">
+      <mat-card-title>
+        {{ stats?.diskRead | formatbytes:2 }} / {{ stats?.diskWrite | formatbytes:2 }}
+      </mat-card-title>
+      <mat-card-content>
+        {{ 'SYSTEM.RECORD.DISK_USAGE_RW' | translate }}
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card align="center">
+      <mat-card-title>
+        {{ stats?.networkIO[0] | formatbytes:2 }} / {{ stats?.networkIO[1] | formatbytes:2 }}
+      </mat-card-title>
+      <mat-card-content>
+        {{ 'SYSTEM.RECORD.NETWORK_USAGE' | translate }}
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

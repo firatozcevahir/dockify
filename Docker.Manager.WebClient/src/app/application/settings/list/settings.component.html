@@ -1,0 +1,160 @@
+<div fxLayout="row" fxLayoutAlign="space-between">
+
+  <div fxFlex="100%">
+    <mat-toolbar class="custom-mat-toolbar">
+      {{'APPLICATIONS.SETTINGS.TITLE'| translate}} 
+      <button mat-icon-button (click)="loadData()" color="primary" title="{{'SYSTEM.REFRESH' | translate}}">
+        <mat-icon>cached</mat-icon>
+      </button>
+      <span class="example-fill-remaining-space"></span>
+    </mat-toolbar>
+    <mat-card>
+      <mat-card-content>
+        <tps-search-bar></tps-search-bar>
+        <div class="t-container mat-elevation-z0">
+          <mat-progress-bar mode='indeterminate' *ngIf="isRequesting"></mat-progress-bar>
+          <table mat-table [dataSource]="dataSource" class="table" matSort>
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> {{'SYSTEM.RECORD.ACTION_BUTTON'| translate}} </th>
+              <td mat-cell *matCellDef="let element" data-label="id">
+                <button mat-button color="primary" [matMenuTriggerFor]="menu">
+                  <mat-icon>settings</mat-icon> <!-- {{'SYSTEM.RECORD.ACTION_BUTTON'| translate}} -->
+                  <mat-icon>keyboard_arrow_down</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+
+                  <button mat-menu-item [routerLink]="['edit', element.id]">
+                    <mat-icon class="mat-18">update</mat-icon> {{'SYSTEM.RECORD.STATE_EDIT'|translate}}
+                  </button>
+
+                  <button mat-menu-item color="warn" (click)="delete(element)">
+                    <mat-icon class="mat-18">delete</mat-icon> {{'SYSTEM.RECORD.DELETE'|translate}}
+                  </button>
+                </mat-menu>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{'APPLICATIONS.SETTINGS.FIELDS.NAME'| translate}} </th>
+              <td mat-cell *matCellDef="let element" data-label="name">
+                <span class="field-title d-none d-b-sm">
+                  {{'APPLICATIONS.SETTINGS.FIELDS.NAME'| translate}} :
+                </span>
+                {{element.name}}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="registryUrl">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{'APPLICATIONS.SETTINGS.FIELDS.REGISTRY_URL'| translate}}
+              </th>
+              <td mat-cell *matCellDef="let element" data-label="registryUrl">
+                <span class="field-title d-none d-b-sm">
+                  {{'APPLICATIONS.SETTINGS.FIELDS.REGISTRY_URL'| translate}} :
+                </span>
+                <a href="{{element.registryUrl}}" target="_blank">{{element.registryUrl}}</a>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="authenticationRequired">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{'APPLICATIONS.SETTINGS.FIELDS.AUTHENTICATION_REQUIRED'| translate}}
+              </th>
+              <td mat-cell *matCellDef="let element" data-label="authenticationRequired">
+                <span class="field-title d-none d-b-sm">
+                  {{'APPLICATIONS.SETTINGS.FIELDS.AUTHENTICATION_REQUIRED'| translate}} :
+                </span>
+                <label *ngIf="element.authenticationRequired">{{'SYSTEM.RECORD.YES'|translate}}</label>
+                <label *ngIf="!element.authenticationRequired">{{'SYSTEM.RECORD.NO'|translate}}</label>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="userName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{'APPLICATIONS.SETTINGS.FIELDS.USER_NAME'| translate}}
+              </th>
+              <td mat-cell *matCellDef="let element" data-label="userName">
+                <span class="field-title d-none d-b-sm">
+                  {{'APPLICATIONS.SETTINGS.FIELDS.USER_NAME'| translate}} :
+                </span>
+                {{element.userName}}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="personalAccessToken">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{'APPLICATIONS.SETTINGS.FIELDS.PERSONAL_ACCESS_TOKEN'| translate}}
+              </th>
+              <td mat-cell *matCellDef="let element" data-label="personalAccessToken">
+                <span class="field-title d-none d-b-sm">
+                  {{'APPLICATIONS.SETTINGS.FIELDS.PERSONAL_ACCESS_TOKEN'| translate}} :
+                </span>
+                {{element.personalAccessToken || '-'}}
+              </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="createdOn">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'SYSTEM.RECORD.CREATED_ON'| translate}} </th>
+              <td mat-cell *matCellDef="let element" data-label="createdOn">
+                <span class="field-title d-none d-b-sm">
+                  {{'SYSTEM.RECORD.CREATED_ON'| translate}} :
+                </span>
+                <span title="{{element.createdOn}}">{{element.createdOn| timeAgo}}</span>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+            <tr mat-row [ngClass]="{'make-gold': row.isLockedOut }" *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell no-data-cell" colspan="7">
+                <img src="assets/images/is-requesting.png" *ngIf="isRequesting" />
+                <ng-container *ngIf="!isRequesting && !isServerError">
+                  <img src="assets/images/no-data.png" />
+                  <br>
+                  <span class="no-records">
+                    {{'SYSTEM.NO_RECORDS' | translate}}
+                  </span>  
+                  <button mat-button color="primary" routerLink="add">
+                    {{'SYSTEM.CLICK_TO_CREATE' | translate}}
+                  </button>
+                </ng-container>
+                <ng-container *ngIf="isServerError">
+                  <img src="assets/images/no-data.png" />
+                  <br>
+                  <span class="sth-went-wrong">
+                    {{'SYSTEM.STH_WENT_WRONG' | translate}}
+                  </span>
+                  <button mat-button color="primary" (click)="loadData()">
+                    {{'SYSTEM.TRY_AGAIN' | translate}}
+                  </button>
+                </ng-container>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+      </mat-card-content>
+
+      <mat-card-footer>
+        <mat-paginator #paginator [length]="itemCount" [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 20, 50, 100, 200, 400, 1000]" (page)="pageChanged($event)"
+          showFirstLastButtons="true">
+        </mat-paginator>
+      </mat-card-footer>
+
+    </mat-card>
+
+  </div>
+
+  <button mat-fab align="end" id="my-add-button" color="primary" routerLink="add">
+    <mat-icon>add</mat-icon>
+  </button>
+
+</div>
+
+<div class="view-side-form">
+  <router-outlet></router-outlet>
+</div>

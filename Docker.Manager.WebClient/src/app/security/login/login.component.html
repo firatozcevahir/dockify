@@ -1,0 +1,71 @@
+<div class="passcodePanel" fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card class="box">
+
+    <mat-card-header>
+      <mat-card-title>
+        <div align="center">
+          {{'SECURITY.TITLE' | translate}}
+        </div>
+      </mat-card-title>
+
+    </mat-card-header>
+
+    <mat-card-content padding>
+
+      <form class="example-form" [formGroup]="loginForm" novalidate autocomplete="off">
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{'SECURITY.USERNAME'|translate}}</mat-label>
+          <input matInput formControlName="email" name="email" cdkFocusInitial type="text" autofocus required>
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint align="end" aria-live="polite">{{'SECURITY.LOGIN_NOTE'|translate}}</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{'SECURITY.PASSWORD'|translate}}</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'"
+            formControlName="password" maxlength="25" required>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+          <mat-error *ngIf="loginForm.controls.password.hasError('required')">{{'USERS.ERROR.REQUIRED'|translate}}
+          </mat-error>
+          <mat-error *ngIf="loginForm.controls.password.hasError('min')">{{'USERS.ERROR.NOT_VALID'|translate}}
+          </mat-error>
+          <mat-error *ngIf="loginForm.controls.password.hasError('maxlength')">{{'USERS.ERROR.NOT_VALID'|translate}}
+          </mat-error>
+
+        </mat-form-field>
+
+        <mat-slide-toggle formControlName="rememberMe" name="rememberMe" align="right">
+          {{'SECURITY.REMEMBER_ME'|translate}}
+        </mat-slide-toggle>
+
+        <!-- <div align="right">
+           <a mat-flat-button>{{'SECURITY.FORGOT_PASSWORD'|translate}}</a>
+        </div> -->
+
+        <mat-card-actions>
+
+          <button mat-raised-button color="primary" size="large" (click)="loginUser()"  [loading]="isRequesting"
+            [disabled]="!loginForm.valid || isRequesting">
+            {{'SECURITY.LOGIN' | translate}}
+          </button>
+
+        </mat-card-actions>
+
+      </form>
+    </mat-card-content>
+
+
+    <mat-card-footer>
+      <footer class="version-info">
+        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+          <small>{{'SYSTEM.COPYRIGHT'| translate}} - {{getNewYear}}</small>
+        </div>
+      </footer>
+    </mat-card-footer>
+
+  </mat-card>
+
+</div>

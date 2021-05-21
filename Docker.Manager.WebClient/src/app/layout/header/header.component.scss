@@ -1,0 +1,14 @@
+ul li {
+    list-style: none;
+    display: inline-flex;
+}
+
+.example-fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+.custom-header-toolbar {
+  border-bottom: 1px solid #2d323e;
+  background: #1e2129;
+  color: #fff;
+}

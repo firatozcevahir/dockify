@@ -1,0 +1,12 @@
+<mat-toolbar color="danger">
+  Manager-Token | <small>{{managerToken}}</small>
+
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+  <pre>{{resultData|json}}</pre>
+</mat-dialog-content>

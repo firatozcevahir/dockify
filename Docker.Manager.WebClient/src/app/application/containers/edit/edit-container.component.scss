@@ -1,0 +1,23 @@
+.container-side-form {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  width: 550px;
+  height: 100%;
+  overflow: auto;
+  background: #fff;
+  padding: 10px;
+  border-left: 1px solid #e0e0e0;
+}
+
+.app-template-image {
+  background-size: contain;
+  background-position: 50%;
+  background-repeat: no-repeat;
+}
+
+.mat-slider {
+  width: 100%;
+}
+

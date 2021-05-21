@@ -1,0 +1,224 @@
+<mat-toolbar>
+  {{'SYSTEM.RECORD.DETAILS'|translate}} |
+  <span *ngIf="container" class="header-container-title">{{container.name.substr(1)}}</span>
+  <span class="example-fill-remaining-space"></span>
+  <mat-spinner *ngIf="isRequesting" diameter="20"></mat-spinner>
+  <button mat-icon-button (click)="loadData()" color="primary" title="{{'SYSTEM.REFRESH' | translate}}">
+    <mat-icon>cached</mat-icon>
+  </button>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-spinner *ngIf="isRequesting && !container"></mat-spinner>
+<mat-dialog-content>
+  <ng-container *ngIf="container">
+    <mat-tab-group dynamicHeight="true" backgroundColor="primary">
+
+      <mat-tab label="{{'SYSTEM.RECORD.DETAILS'|translate}}">
+        <div class="container-detail-table">
+          <mat-card>
+            <mat-card-header>
+              <mat-icon mat-card-avatar>assessment</mat-icon>
+              <mat-card-title>
+                {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.CON_STATUS' | translate}}
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <table cellpadding="0" cellspacing="0">
+                <tbody>
+                  <tr>
+                    <td>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.ID' | translate}}</td>
+                    <td>
+                      {{container.id}} <mat-icon class="mat-18">content_copy</mat-icon>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.NAME' | translate}}</td>
+                    <td>
+                      <span *ngIf="!isRenaming">
+                        {{container.name.substr(1)}}
+                      </span>
+                      <button mat-icon-button (click)="isRenaming = true" *ngIf="!isRenaming">
+                        <tps-tooltip icon="create" msg="{{'TOOLTIP.EDIT_NAME' | translate}}">
+                        </tps-tooltip>
+                      </button>
+
+                      <input type="text" *ngIf="isRenaming" maxlength="200" [(ngModel)]="newContainerName">
+                      <mat-icon *ngIf="isRenaming" style="cursor: pointer; vertical-align: text-bottom;" color="primary"
+                        (click)="renameContainer(container.id, newContainerName)">
+                        save
+                      </mat-icon>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.STATE' | translate}}</td>
+                    <td>
+                      {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.' + container.state.status.toUpperCase() |
+                      translate}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{{'SYSTEM.RECORD.CREATED_ON'| translate}}</td>
+                    <td>{{container.created}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      {{
+                      (container.state.running ? 'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.START_TIME' :
+                      'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FINISH_TIME')
+                      | translate
+                      }}
+                    </td>
+                    <td>
+                      {{container.state.running ? container.state.startedAt : container.state.finishedAt}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card>
+            <mat-card-header>
+              <mat-icon mat-card-avatar>description</mat-icon>
+              <mat-card-title>
+                {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.CON_DETAILS' | translate}}
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <table cellpadding="0" cellspacing="0">
+                <tbody>
+                  <tr>
+                    <td>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.IMAGE' | translate}}</td>
+                    <td>{{container.config.image}}@{{container.image}}</td>
+                  </tr>
+                  <tr>
+                    <td>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.COMMAND' | translate}}</td>
+                    <td>{{container.config.cmd?.join(' ')}}</td>
+                  </tr>
+                  <tr>
+                    <td>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.ENTRY_POINT' | translate}}</td>
+                    <td>{{container.config.entrypoint?.join(' ')}}</td>
+                  </tr>
+                  <tr>
+                    <td>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.ENVIRONMENT' | translate}}</td>
+                    <td>
+                      <ng-container *ngFor="let env of container.config.env">
+                        {{env}}
+                        <br>
+                      </ng-container>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.LABELS' | translate}}</td>
+                    <td>
+                      <ng-container *ngFor="let label of container.config.labels | keyvaluepair">
+                        {{label.key}} : {{label.value}}
+                        <br>
+                      </ng-container>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </mat-card-content>
+          </mat-card>
+
+
+          <mat-card>
+            <mat-card-header>
+              <mat-icon mat-card-avatar>storage</mat-icon>
+              <mat-card-title>
+                {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.BINDS' | translate}}
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <table cellpadding="0" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>
+                      {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.HOST_PATH' | translate}}
+                      /
+                      {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.VOLUME_NAME' | translate}}
+                    </th>
+                    <th>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.PATH_IN_CON' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let mount of container.mounts">
+                    <td>{{mount.name ? mount.name : mount.source}}</td>
+                    <td>{{mount.destination}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card>
+            <mat-card-header>
+              <mat-icon mat-card-avatar>device_hub</mat-icon>
+              <mat-card-title>
+                {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.CONNECTED_NETS' | translate}}
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <table cellpadding="0" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>{{'APPLICATIONS.DOCKER_MANAGER.NETWORKS.NAME' | translate}}</th>
+                    <th>{{'APPLICATIONS.DOCKER_MANAGER.NETWORKS.IP_ADDRESS' | translate}}</th>
+                    <th>{{'APPLICATIONS.DOCKER_MANAGER.NETWORKS.GATEWAY' | translate}}</th>
+                    <th>{{'APPLICATIONS.DOCKER_MANAGER.NETWORKS.MAC_ADDRESS' | translate}}</th>
+                    <th>{{'SYSTEM.RECORD.ACTION_BUTTON' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let network of container.networkSettings.networks | keyvaluepair ">
+                    <td>{{network.key}}</td>
+                    <td>{{network.value.ipAddress}}</td>
+                    <td>{{network.value.gateway}}</td>
+                    <td>{{network.value.macAddress}}</td>
+                    <td>
+                      <button mat-stroked-button color="warn"
+                        (click)="networkOperation(container.id, network.value.networkID, false)">
+                        <mat-icon>delete</mat-icon>
+                        {{'SYSTEM.RECORD.DISCONNECT_FROM_NETWORK'|translate}}
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="5">
+                      <mat-form-field appearance="outline" style="width: 30%;">
+                        <mat-label>
+                          {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.NETWORK_MODE'|translate}}
+                        </mat-label>
+                        <mat-select #slctNetwork>
+                          <mat-option *ngFor="let item of networkList" [value]="item.id">
+                            {{item.name}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <button mat-raised-button color="primary"
+                        (click)="networkOperation(container.id, slctNetwork.value, true)" [loading]="isConnecting">
+                        {{'SYSTEM.RECORD.CONNECT_TO_NETWORK'|translate}}
+                      </button>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-tab>
+      <mat-tab label="{{'SYSTEM.RECORD.INSPECT_PROCESS'|translate}}">
+        <pre>{{container|json}}</pre>
+      </mat-tab>
+    </mat-tab-group>
+
+
+
+  </ng-container>
+</mat-dialog-content>

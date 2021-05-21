@@ -1,0 +1,23 @@
+<mat-toolbar color="danger">
+  {{'SYSTEM.RECORD.INSPECT_PROCESS'|translate}}
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+  <mat-dialog-container>
+    <mat-form-field appearance="outline">
+      <mat-label>Search For Image</mat-label>
+      <input matInput type="text" [(ngModel)]="searchTerm" id="searchTerm" maxlength="200"
+        placeholder="{{'APPLICATIONS.DOCKER_MANAGER.IMAGES.FIELDS.FROM_SOURCE'|translate}}">
+        <span>
+          <mat-icon class="mat-icon-rtl-mirror" svgIcon="thumb-up"></mat-icon>
+        </span>
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+
+  </mat-dialog-container>
+</mat-dialog-content>

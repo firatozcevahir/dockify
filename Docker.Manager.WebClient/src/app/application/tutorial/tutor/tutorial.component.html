@@ -1,0 +1,37 @@
+<mat-card>
+  <mat-card-title>
+    {{'TUTORIAL.TITLE'|translate}}
+    <span class="example-fill-remaining-space"></span>
+    <mat-icon>settings</mat-icon>
+  </mat-card-title>
+  <br />
+  <br />
+  <mat-card-content>
+
+    <mat-accordion class="example-headers-align" [multi]="false" #accordion="matAccordion">
+
+      <mat-expansion-panel [expanded]="panel.isExpanded" hideToggle (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false" *ngFor="let panel of (accordionList$|async)" #mapanel="matExpansionPanel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <b>{{panel.title}}</b>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-panel-description>
+          <p>{{panel.description}}</p>
+        </mat-panel-description>
+
+        <mat-divider></mat-divider>
+
+        <span class="fill-remaining-space"></span>
+        <button mat-button (click)="showVideo(panel)">
+          <mat-icon>videocam</mat-icon>
+        </button>
+
+      </mat-expansion-panel>
+
+    </mat-accordion>
+
+  </mat-card-content>
+</mat-card>

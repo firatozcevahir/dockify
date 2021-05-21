@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  
+  dockermanagerservice:
+    image: teknopalas/dockermanagerapi:1.0
+    build: Docker.Manager.Api
+    container_name: dockermanagerservice
+    restart: unless-stopped
+    ports:
+      - "7001" 
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    networks:
+      - teknopalas
+
+networks:
+  teknopalas:
+    name: teknopalas-network
+    external: true
+ 

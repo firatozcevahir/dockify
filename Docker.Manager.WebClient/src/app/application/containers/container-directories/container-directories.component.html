@@ -1,0 +1,73 @@
+<mat-toolbar color="danger">
+    {{'SYSTEM.RECORD.DIRECTORIES'|translate}} |
+    <span class="header-container-title">{{record.name}}</span>
+    <span class="header-image-title small-image-name">{{record.image}}</span>
+    <span class="example-fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-spinner *ngIf="isRequesting"></mat-spinner>
+<mat-dialog-content class="mat-typography" *ngIf="!isRequesting">
+    <mat-list>
+        <div mat-subheader>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.GRAPH_DRIVER' | translate}}</div>
+        <mat-list-item (click)="copyPath(record.graphDriver.data.MergedDir)"
+         title="{{record.graphDriver.data.MergedDir}}">
+            <mat-icon mat-list-icon>content_copy</mat-icon>
+            <div mat-line>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.MERGED_DIR' | translate}}</div>
+            <div mat-line>{{record.graphDriver.data.MergedDir}}</div>
+        </mat-list-item>
+        <mat-list-item (click)="copyPath(record.graphDriver.data.UpperDir)"
+        title="{{record.graphDriver.data.UpperDir}}">
+            <mat-icon mat-list-icon>content_copy</mat-icon>
+            <div mat-line>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.UPPER_DIR' | translate}}</div>
+            <div mat-line>{{record.graphDriver.data.UpperDir}}</div>
+        </mat-list-item>
+        <mat-list-item (click)="copyPath(record.graphDriver.data.WorkDir)"
+        title="{{record.graphDriver.data.WorkDir}}">
+            <mat-icon mat-list-icon>content_copy</mat-icon>
+            <div mat-line>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.WORK_DIR' | translate}}</div>
+            <div mat-line>{{record.graphDriver.data.WorkDir}}</div>
+        </mat-list-item>
+
+        <mat-divider></mat-divider>
+        <div mat-subheader>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.PATHS' | translate}}</div>
+        <mat-list-item (click)="copyPath(record.resolvConfPath)"
+        title="{{record.resolvConfPath}}">
+            <mat-icon mat-list-icon>content_copy</mat-icon>
+            <div mat-line>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.RESOLV_CONF_PATH' | translate}}</div>
+            <div mat-line>{{record.resolvConfPath}}</div>
+        </mat-list-item>
+        <mat-list-item (click)="copyPath(record.hostnamePath)"
+        title="{{record.hostnamePath}}">
+            <mat-icon mat-list-icon>content_copy</mat-icon>
+            <div mat-line>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.HOST_NAME_PATH' | translate}}</div>
+            <div mat-line>{{record.hostnamePath}}</div>
+        </mat-list-item>
+        <mat-list-item (click)="copyPath(record.hostsPath)"
+        title="{{record.hostsPath}}">
+            <mat-icon mat-list-icon>content_copy</mat-icon>
+            <div mat-line>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.HOSTS_PATH' | translate}}</div>
+            <div mat-line>{{record.hostsPath}}</div>
+        </mat-list-item>
+        <mat-list-item (click)="copyPath(record.logPath)"
+        title="{{record.logPath}}">
+            <mat-icon mat-list-icon>content_copy</mat-icon>
+            <div mat-line>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.LOG_PATH' | translate}}</div>
+            <div mat-line>{{record.logPath}}</div>
+        </mat-list-item>
+
+        <mat-divider></mat-divider>
+        <div mat-subheader>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.MOUNTS' | translate}}</div>
+        <mat-list-item *ngFor="let mount of record.mounts" (click)="copyPath(mount.source)"
+        title="{{mount.source}}">
+            <mat-icon mat-list-icon>content_copy</mat-icon>
+            <div mat-line>
+                {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.SOURCE_DESTINATION' | translate}}
+                ({{mount.type}})
+            </div>
+            <div mat-line>{{mount.source}}:{{mount.destination}}</div>
+        </mat-list-item>
+    </mat-list>
+</mat-dialog-content>

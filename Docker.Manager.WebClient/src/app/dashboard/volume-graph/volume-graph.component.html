@@ -1,0 +1,37 @@
+<mat-progress-bar mode='indeterminate' *ngIf="isRequesting"></mat-progress-bar>
+<mat-card class="system-info-clickable-card">
+  <mat-card-header>
+    <mat-card-title class="system-info-card-title">
+      {{volumes.length}}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{ 'DASHBOARD.VOLUMES' | translate }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="system-chart">
+    <img src="assets/images/is-requesting.png" *ngIf="isRequesting" />
+    <ng-container *ngIf="!isRequesting && !isServerError && volumes.length === 0">
+      <img src="assets/images/no-data.png" />
+      <br>
+      <span class="no-records">
+        {{'SYSTEM.NO_RECORDS' | translate}}
+      </span>
+      <button mat-button color="primary" routerLink="/app/docker-volumes/add">
+        {{'SYSTEM.CLICK_TO_CREATE' | translate}}
+      </button>
+    </ng-container>
+    <ng-container *ngIf="isServerError">
+      <img src="assets/images/no-data.png" />
+      <br>
+      <span class="sth-went-wrong">
+        {{'SYSTEM.STH_WENT_WRONG' | translate}}
+      </span>
+      <button mat-button color="primary" (click)="loadData()">
+        {{'SYSTEM.TRY_AGAIN' | translate}}
+      </button>
+    </ng-container>
+    <div class="chart-panel" [tpsMyEcharts]="volumeGraphOptions" #tpsEChartVolume
+      *ngIf="!isRequesting && !isServerError && volumes.length > 0">
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,63 @@
+<div class="side-form">
+  <form class="main-form" [formGroup]="dataFRM" novalidate autocomplete="off">
+    <mat-card>
+      <mat-card-title>
+        <h2 mat-dialog-title> {{TITLE}}</h2>
+      </mat-card-title>
+
+      <mat-card-content>
+
+        <mat-form-field appearance="fill">
+          <mat-label>{{'APPLICATIONS.DOCKER_IMAGE.FIELDS.REGISTRY_NAME'|translate}}</mat-label>
+          <mat-select formControlName="fromSrc" id="fromSrc" (selectionChange)="handleRegistryChange()">
+            <mat-option *ngFor="let item of dockerRegistryList" [value]="item">
+              {{item.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label> {{ dataFRM.controls.fromSrc.value?.registryUrl | formaturl }}/ </mat-label>
+          <input type="text" matInput class="form-control" formControlName="fromImage" id="fromImage"
+            [matAutocomplete]="auto" required fxFlex>
+          <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'200'} }}</mat-hint>
+          <mat-hint *ngIf="descriptions !== undefined">{{ descriptions }}</mat-hint>
+          <mat-error *ngIf="hasError('fromImage', 'required')">{{'SYSTEM.VALIDATION.NAME_REQUIRED'|translate}}
+          </mat-error>
+          <mat-error *ngIf="hasError('fromImage', 'maxlength')">
+            {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'200'} }}</mat-error>
+
+          <mat-icon *ngIf="dataFRM.controls.fromImage.value" matSuffix
+                    (click)="dataFRM.controls.fromImage.setValue('')">
+            clear
+          </mat-icon>
+          <mat-icon *ngIf="dataFRM.controls.fromImage.value" 
+                    matSuffix aria-label="search"
+                    (click)="searchForImage()">
+            search
+          </mat-icon>
+
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let img of filteredImages | async" [value]="img">
+              {{img}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" [disabled]="!dataFRM.valid" tabindex="1" (click)="saveData()"
+          [loading]="isRequesting">
+          <mat-icon>save</mat-icon>
+          {{'SYSTEM.RECORD.SAVE'|translate}}
+        </button>
+
+        <button type="button" mat-raised-button color="warn" routerLink="/app/docker-manager">
+          <mat-icon>clear</mat-icon>
+          {{'SYSTEM.RECORD.CANCEL'|translate}}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework> 
+    <LangVersion>Latest</LangVersion>
+    <AssemblyName>Dockify.Core</AssemblyName>
+  </PropertyGroup>
+ 
+  <ItemGroup>
+    
+    <PackageReference Include="badisCore.Common" Version="2.0.*" />
+     
+    <PackageReference Include="badisCore.Logging" Version="2.0.3" />
+    
+    <PackageReference Include="badisCore.Swagger" Version="2.0.4" /> 
+    
+    <PackageReference Include="badisCore.WebApiCQRS" Version="2.0.*" />
+    
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.2" /> 
+
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference> 
+
+    <PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />
+     
+  </ItemGroup>
+
+  <ItemGroup> 
+    <ProjectReference Include="..\Docker.DotNet\src\Docker.DotNet\Docker.DotNet.csproj" /> 
+    <ProjectReference Include="..\Docker.Manager.Model\Dockify.Model.csproj" /> 
+    <ProjectReference Include="..\UnitOfWork\UnitOfWork.csproj" />
+  </ItemGroup>
+  
+</Project>

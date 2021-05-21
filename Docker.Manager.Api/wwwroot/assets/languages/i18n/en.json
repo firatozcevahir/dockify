@@ -1,0 +1,556 @@
+{
+  "SYSTEM": {
+    "LANGUAGE": "English",
+    "APP_NAME": "Dockify",
+    "WELCOME_TEXT": "Welcome to Bakelor Dockify",
+    "ERROR": "General System Error",
+    "COPYRIGHT": "Dockify© Bakelor Copyright Reserved ",
+    "TEL_NUMBER": "+90 216 (pbx)",
+    "EMAIL_ADDRESS": "info@bakelor.com.tr",
+    "CLOSE": "Close",
+    "BACK_BUTTON_TEXT": "Back",
+    "COPIED": "Copied",
+    "WARNING": "Warning",
+    "REFRESH": "Refresh",
+    "SERVER_ERROR": "Server Error",
+    "STH_WENT_WRONG": "Something Went Wrong.",
+    "NO_RECORDS": "There are no records to show. ",
+    "CLICK_TO_CREATE": "Click to Create",
+    "TRY_AGAIN": "Try Again",
+    "RECORD": {
+      "ACTION_BUTTON": "Actions",
+      "ADD": "Add",
+      "STATE_EDIT": "Edit",
+      "COPY": "Copy",
+      "CLONE": "Clone",
+      "STATE_INSERT": "Insert",
+      "PULL_IMAGE": "Pull Image",
+      "START_PROCESS": "Start",
+      "RESTART_PROCESS": "Restart",
+      "EXEC": "Exec",
+      "STOP_PROCESS": "Stop",
+      "PAUSE_PROCESS": "Pause",
+      "UNPAUSE_PROCESS": "Resume",
+      "COMMAND_LINE": "CLI",
+      "CONTAINER_STATS": "Stats",
+      "LOGS": "Logs",
+      "CPU_USAGE": "CPU Usage",
+      "MEMORY_USAGE": "Memory Usage",
+      "DISK_USAGE_RW": "Disk Usage Read/Write",
+      "NETWORK_USAGE": "Network I/O",
+      "CONTAINER_NOT_RUNNING": "Container is not Running",
+      "RENAME_PROCESS": "Rename",
+      "OPEN_IN_BROWSER": "Open In Browser",
+      "INSPECT_PROCESS": "Inspect",
+      "IMAGE_HISTORY": "Image History",
+      "PUSH_TO_REGISTRY": "Push to Registry",
+      "TAG_IMAGE": "Tag Image",
+      "UPDATE_IMAGE": "Update Image",
+      "CONNECT_TO_NETWORK": "Connect to Network",
+      "DISCONNECT_FROM_NETWORK": "Disconnect from Network",
+      "CREATE_IMAGE": "Create Image",
+      "CREATED_ON": "Created On",
+      "UPDATED_ON": "Updated On",
+      "DETAIL": "Detail",
+      "DELETE": "Del",
+      "REMOVE": "Prune Unused",
+      "SEARCH": "Search",
+      "FILTER": "Filter",
+      "TOTAL": "Total",
+      "MORE": "More",
+      "ACTIVE": "Active",
+      "PASSIVE": "Passive",
+      "SELECT": "Select One...",
+      "SAVE": "Save",
+      "OK": "Ok",
+      "CONFIRM": "Confirm",
+      "ARE_YOU_SURE": "Are you sure?",
+      "IS_PROCESSING": "Is processing",
+      "IS_DELETING": " is deleting.",
+      "LOADING_TEXT": "loading..",
+      "YES": "Yes",
+      "NO": "No",
+      "CANCEL": "Cancel",
+      "OPERATION_CANCELED": "Operation canceled",
+      "STATUS": "Status",
+      "UNLOCK": "Unlock",
+      "PROCESS_COMPLETED": "Process completed.",
+      "PROCESS_FAILED": "Process failed.",
+      "LIST_TASKS": "Scale Service",
+      "PROTECTED": "Protected",
+      "DIRECTORIES": "Directories",
+      "DETAILS": "Details",
+      "PAGINATION": {
+        "FIRST_PAGE_LABEL": "first page",
+        "LST_PAGE_LABEL": "last page",
+        "NEXT_PAGE_LABEL": "next page",
+        "PREVIOUS_PAGE_LABEL": "previous page",
+        "ITEMS_PER_PAGE_LABEL": "items per page"
+      }
+    },
+    "HINT": {
+      "ENV_VARIABLE_EACH_ROW": "One environment variable each row",
+      "SHELLSCRIPT_CONTENT":"Insert the scripts"
+    },
+    "VALIDATION": {
+      "NAME_REQUIRED": "Name is required",
+      "ENTER_CURRENT_PASSWORD": "Please enter your current password.",
+      "EMAIL_REQUIRED": "Email is required",
+      "PHONE_REQUIRED": "Phone is required",
+      "USERNAME_REQUIRED": "Username is required",
+      "LENGTH_MAX": "Not more than {{length}} characters long.",
+      "LENGTH_MIN": "You must enter at least {{length}} characters.",
+      "MORE_THEN_LENGTH": "You have more than {{length}} characters.",
+      "PASSWORD_NOT_MATCH": "Passwords do not match",
+      "PASSWORD_NOT_SAME_OLD": "The new password cannot be the same as the old one.",
+      "PORT_REQUIRED": "Port is Required"
+    },
+    "MENU": "System",
+    "ACTION": {
+      "SUCCESS": "Success",
+      "FAILURE": "Failure",
+      "INFO": "Info",
+      "DATA_REFRESH": "Data Updated",
+      "CON_CREATE_SUCCESS": "Container Created Successfully",
+      "CON_START_SUCCESS": "Container Started Successfully",
+      "CON_RESTART_SUCCESS": "Container Restarted Successfully",
+      "CON_STOP_SUCCESS": "Container Stopped Successfully",
+      "CON_PAUSE_SUCCESS": "Container Paused Successfully",
+      "CON_UNPAUSE_SUCCESS": "Container Resumed Successfully",
+      "CON_DEL_SUCCESS": "Container Deleted Successfully",
+      "CON_RENAME_SUCCESS": "Container Renamed Successfully",
+      "IMG_DEL_SUCCESS": "Image Deleted Successfully",
+      "IMG_NOT_FOUND": "Image not found",
+      "NETWORK_CONN_SUCCESS": "Connected Successfully",
+      "NETWORK_DISCONN_SUCCESS": "Disconnected Successfully",
+      "NETWORK_CREATE_SUCCESS": "Network Created Successfully",
+      "NETWORK_DEL_SUCCESS": "Network Deleted Successfully",
+      "VOLUME_PRUNE_SUCCESS": "Unused Volumes Deleted Successfully.",
+      "VOLUME_DEL_SUCCESS": "Volume Deleted Successfully",
+      "SWARMSERVICE_DEL_SUCCESS": "Service Deleted Successfully",
+      "CON_PRUNE_SUCCESS": "Stopped Containers Deleted Successfully",
+      "IMG_PRUNE_SUCCESS": "Unused Images Deleted Successfully",
+      "NETWORK_PRUNE_SUCCESS": "Unused Networks Deleted Successfully"
+    }
+  },
+  "SECURITY": {
+    "TITLE": "Security",
+    "REMEMBER_ME": "remember me",
+    "USERNAME": "User Name",
+    "CHANGE_PASSWORD": "Change Password",
+    "PASSWORD": "Password",
+    "NEW_PASSWORD": "New Password",
+    "NEW_PASSWORD_VERIFY": "Verify New Password",
+    "FORGOT_PASSWORD": "Forgot Password?",
+    "LOGIN": "Login",
+    "LOGOUT": "Logout",
+    "LOGIN_NOTE": "you can enter the system with your phone/user name",
+    "ERROR": {
+      "WRONG_PASSWORD": "Wrong Password",
+      "LOGIN_FAILED": "Username or password is incorrect. Please try again",
+      "401": "Authorized"
+    }
+  },
+  "LANGUAGES": {
+    "TITLE": "Language"
+  },
+  "DASHBOARD": {
+    "TITLE": "Dashboard",
+    "IMAGES": "Images",
+    "CONTAINERS": "Containers",
+    "MEMORY": "Memory",
+    "CPU": "CPU",
+    "VOLUMES": "Volumes",
+    "NETWORKS": "Networks",
+    "CONTAINER_RUNNING": "Running",
+    "CONTAINER_STOPPED": "Stopped",
+    "CONTAINER_PAUSED": "Paused",
+    "VERSION": "Version"
+  },
+  "APPLICATIONS": {
+    "K8": {
+      "MENU": "Service Scalling",
+      "TITLE": "K8"
+    },
+    "SWARM": {
+      "TITLE": "Swarm",
+      "LIST": "Swarm",
+      "TAB1": "GENERAL",
+      "TAB2": "RESOURCES",
+      "TAB3": "NETWORK",
+      "FIELDS": {
+        "NAME": "Name",
+        "LISTEN_ADDRESS": "Listen Address",
+        "ADVERTISE_ADDRESS": "Advertise Address",
+        "DATA_PATH_ADDRESS": "Data Path Address",
+        "DATA_PATH_PORT": "Data Path Port",
+        "FORCE_NEW_CLUSTER": "Force New Cluster",
+        "DEFAULT_ADDRESS_POOL": "Default Address Pool",
+        "AUTO_LOCK_MANAGER": "Auto Lock Manager",
+        "AVAILABILITY": "Availability",
+        "SUBNET_SIZE": "Subnect Size",
+        "TASK_HISTORY_LIMIT": "Task History Retention Limit",
+        "HEARTBEAT_PERIOD": "Heartbeat Period",
+        "SPEC": "Spec"
+      },
+      "NODE": {
+        "ID": "Id",
+        "DESCRIPTION": "Description",
+        "MANAGER_STATUS": "Manage Status",
+        "SPEC_ROLE": "Role",
+        "STATUS_ADDRESS": "Status",
+        "CPU": "CPU",
+        "TOTAL_CPU": "Total CPU",
+        "MEMORY": "Memory",
+        "TOTAL_MEMORY": "Total Memory"
+      },
+      "SERVICE": {
+        "CONTAINER_NAME": "Container Name",
+        "IMAGE_NAME": "Image Name",
+        "TARGET_PORT": "Target Port",
+        "PUBLISH_PORT": "Publish Port",
+        "REPLICATED": "Replicated",
+        "CPU_LIMIT": "CPU limit",
+        "CPU_RESERVATION": "CPU reservation",
+        "MEMORY_LIMIT": "Memory limit",
+        "MEMORY_RESERVATION": "Memory reservation",
+        "TASKS": {
+          "STATE": {
+            "RUNNING": "running",
+            "NEW": "new",
+            "PREPARING": "preparing",
+            "FAILED": "failed",
+            "PENDING": "pending",
+            "STARTING": "starting",
+            "READY": "ready",
+            "ACCEPTED": "accepted",
+            "REJECTED": "rejected"
+          }
+        }
+      }
+    },
+    "DOCKER_MANAGER": {
+      "TITLE": "Docker Images",
+      "REPO_TAGS": "Repo Tags",
+      "SIZE": "Size",
+      "IN_USE": "in use",
+      "SIZE_IN_USE": "IN USE",
+      "SIZE_TOTAL": "TOTAL",
+      "HUBS": "Hub - Image List",
+      "IMAGES": {
+        "FIELDS": {
+          "FROM_IMAGE": "Image Name",
+          "REPOSITORY": " Repository",
+          "TAG": " Tag Name",
+          "FROM_SOURCE": "From Source",
+          "CREATE_CONTAINER": "Create Container",
+          "PORT": "Port"
+        }
+      },
+      "VOLUMES": {
+        "TITLE": "Volumes",
+        "NAME": "Name",
+        "DRIVER": "Driver",
+        "MOUNT_POINT": "Mount Point",
+        "SCOPE": "Scope",
+        "LABELS": "Label",
+        "OPTIONS": "Option"
+      },
+      "NETWORKS": {
+        "TITLE": "Networks",
+        "NAME": "Network Name",
+        "IPAM": "Ipam",
+        "SCOPE": "Scope",
+        "DRIVER": "Driver",
+        "ATTACHABLE": "Attachable",
+        "ENABLED_IPV6": "Enable IPv6 on the network.",
+        "CHECK_DUPLICATE": "Check for networks with duplicate names.",
+        "INTERNAL": "Restrict external access to the network",
+        "MAC_ADDRESS": "Mac Address",
+        "IP_ADDRESS": "IP Address",
+        "GATEWAY": "Gateway"
+      },
+      "CONTAINERS": {
+        "ID": "ID",
+        "START_TIME": "Start Time",
+        "FINISH_TIME": "Finished",
+        "CON_DETAILS": "Container Details",
+        "CON_STATUS": "Container Status",
+        "HOST_PATH": "Host Path",
+        "PATH_IN_CON": "Path in Container",
+        "CONNECTED_NETS": "Connected Networks",
+        "TITLE": "Containers",
+        "IMAGE": "Image",
+        "STATUS": "Status",
+        "STATE": "State",
+        "COMMAND": "Command",
+        "PUBLISHED_PORTS": "Published Ports",
+        "RUNNING": "running",
+        "EXITED": "stopped",
+        "CREATED": "created",
+        "PAUSED": "paused",
+        "RESTARTING": "restarting",
+        "GRAPH_DRIVER": "Graph Driver",
+        "MERGED_DIR": "Merged Directory",
+        "UPPER_DIR": "Upper Directory",
+        "WORK_DIR": "Work Directory",
+        "PATHS": "Paths",
+        "RESOLV_CONF_PATH": "ResolvConf Path",
+        "HOST_NAME_PATH": "Host Name Path",
+        "HOSTS_PATH": "Hosts Path",
+        "LOG_PATH": "Log Path",
+        "MOUNTS": "Mounts",
+        "SOURCE_DESTINATION": "Source:Destination",
+        "TAB1": "GENERAL",
+        "TAB2": "RESOURCES",
+        "TAB3": "NETWORK",
+        "TAB4": "ENVIRONMENTS",
+        "USER": "Kullanıcı",
+        "CONNECT": "Connect",
+        "DISCONNECT": "Disconnect",
+        "CLI":"CLI",
+        "FIELDS": {
+          "NAME": "Name",
+          "IMAGE": "Image",
+          "COMPANY": "Company",
+          "DOMAIN_NAME": "Domain Name",
+          "HOST_NAME": "Host Name",
+          "MAC_ADDRESS": "Mac Address",
+          "STORATE_PATH": "Storage Path",
+          "WORKING_DIR": "Working Dir.",
+          "PORT_NO": "Host Port:Container Port",
+          "PROPERTIES": "Properties",
+          "DNS_ADDRESS": "Dns Name",
+          "TTY": "Tty",
+          "ALWAYS_PULL_IMAGE": "Always Pull the Image",
+          "RANDOM_PORTS": "Publish all exposed network ports to random host ports",
+          "PUBLISH_RANDOM_PORTS": "All Ports Published",
+          "PROTECTED": "Protected",
+          "START_CONTAINER": "Start Container",
+          "AUTO_UPDATE": "Auto Update",
+          "ENVIRONMENT": "Environment variables",
+          "LABELS": "Labels",
+          "COMMAND": "Command",
+          "ENTRY_POINT": "Entry Point",
+          "ARGS": "Args",
+          "BINDS": "Binds",
+          "NETWORK_MODE": "Network",
+          "VOLUME_NAME": "Volume Name",
+          "RESERVATION_MEMORY_BYTE": "Memory Reservation",
+          "LIMIT_NANO_CPU": "CPU Limit",
+          "RESERVATION_NANO_CPU": "CPU Reservation",
+          "LIMIT_MEMORY_BYTES": "Memory Limit",
+          "UNLIMITED": "Unlimited",
+          "UPDATE_PARALLELISM": "Update Paralellelism",
+          "UPDATE_DELAY": "Update Delay",
+          "UPDATE_FAILURE_ACTION": "Update Failure Action",
+          "UPDATE_ORDER": "Update Order",
+          "RESTART_CONDITION": "Restart Condition",
+          "RESTART_DELAY": "Restart Delay",
+          "RESTART_MAX_ATTEMPTS": "Restart Max Attempts",
+          "RESTART_WINDOW": "Restart Window"
+        }
+      },
+      "SERVICES": {
+        "TITLE": "Services"
+      }
+    },
+    "DOCKER_IMAGE": {
+      "TITLE": "App Template",
+      "TAB1": "General Info",
+      "TAB2": "Environment Data",
+      "FIELDS": {
+        "TITLE": "Title",
+        "APP_TEMPLATE": "Template",
+        "REGISTRY_NAME": "Registry Name",
+        "COMPANY_NAME": "Company Name",
+        "NO_COMPANY": "No Company",
+        "REPOSITORY_NAME": "Repository Name",
+        "TAG_NAME": "Tag Name",
+        "DESCRIPTIONS": "Descriptions",
+        "LOGO_URL": "Logo",
+        "IMAGE_NAME": "Image",
+        "HOST_PORT": "Port",
+        "PLATFORM": "Platform",
+        "RESTART_POLICY": "Restart Policy",
+        "ENVIRONMENT_TEXT": "Environment",
+        "PROP_NOT_FOUND": "Not Found"
+      }
+    },
+    "TENANTS": {
+      "TITLE": "Companies List",
+      "TAB1": "General Info",
+      "TAB2": "Settings/Json",
+      "FIELDS": {
+        "NAME": "Company Name",
+        "DNS_NAME": "Dns Name",
+        "NOTE": "Note",
+        "DATABASE": "Database",
+        "ADDRESS": "Address",
+        "CONTACT_PERSON": "Contact Person",
+        "TELEPHONE": "Phone Number",
+        "EMAIL_ADDRESS": "Email Address",
+        "PRIVATE_STTINGS": "Private Settings"
+      }
+    },
+    "SETTINGS": {
+      "TITLE": "Settings",
+      "FIELDS": {
+        "NAME": "Name",
+        "REGISTRY_URL": "Registry URL",
+        "USER_NAME": "User Name",
+        "PASSWORD": "Password",
+        "PERSONAL_ACCESS_TOKEN": "Peronal Access Token",
+        "AUTHENTICATION_REQUIRED": "Authentication Required"
+      }
+    },
+    "SHELLSCRIPTS": {
+      "TITLE": "Shell Scripts",
+      "FIELDS": {
+        "NAME": "Name",
+        "PATH":"Path",
+        "FULL_PATH":"Full Path",
+        "FILE_NAME":"File Name",
+        "SCRIPT_CONTENT":"Script Content"
+      }
+    }
+  },
+  "TIME_AGO": {
+    "SEC_45": "a few seconds ago",
+    "SEC_90": "a minute ago",
+    "MIN_45": " minutes ago",
+    "MIN_90": " an hour ago",
+    "HR_22": " hours ago",
+    "HR_36": "a day ago",
+    "DAY_25": " days ago",
+    "DAY_45": "a month ago",
+    "DAY_345": " months ago",
+    "DAY_545": "a year ago",
+    "YEAR": " years ago"
+  },
+  "USERS": {
+    "ERROR": {
+      "NOT_VALID": "Invalid",
+      "REQUIRED": "Required"
+    }
+  },
+  "REGISTRY_MANAGER": {
+    "TITLE": "Registry Manager",
+    "FIELDS": {
+      "REPOSITORIES": "Repositories"
+    }
+  },
+  "TUTORIAL": {
+    "MENU": "Tutorial",
+    "TITLE": "Show Tutorial",
+    "DATA": [{
+        "id": 1,
+        "title": "Whats is Docker",
+        "description": "Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers.",
+        "isDisabled": false,
+        "isExpanded": false
+      },
+      {
+        "id": 2,
+        "title": "What is docker-image",
+        "description": "A Docker image is a file, comprised of multiple layers, that is used to execute code in a Docker container.",
+        "isDisabled": false,
+        "isExpanded": false
+      },
+      {
+        "id": 3,
+        "title": "What is docker-image-container",
+        "description": "A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries and settings.",
+        "isDisabled": false,
+        "isExpanded": false
+      },
+      {
+        "id": 4,
+        "title": "What is docker-image-service",
+        "description": "Description One",
+        "isDisabled": false,
+        "isExpanded": false
+      },
+      {
+        "id": 5,
+        "title": "What is docker-swarm",
+        "description": "Description One",
+        "isDisabled": false,
+        "isExpanded": false
+      },
+      {
+        "id": 5,
+        "title": "What is docker-volume",
+        "description": "Description One",
+        "isDisabled": false,
+        "isExpanded": false
+      }
+    ]
+  },
+  "CONFIRM_MODAL": {
+    "CON_PRUNE_TITLE": "Container Prune Confirmation",
+    "CON_PRUNE_MESSAGE": "This operation will delete stopped containers. Are you sure, you want to Continue?",
+    "CON_INCLUDE_PROTECTED": "Include protected containers",
+    "VOL_PRUNE_TITLE": "Volume Prune Confirmation",
+    "VOL_PRUNE_MESSAGE": "This operation will delete unused volumes. Are you sure, you want to Continue?",
+    "IMAGE_PRUNE_TITLE": "Image Prune Confirmation",
+    "IMAGE_PRUNE_MESSAGE": "This operation will delete unused images. Are you sure, you want to Continue?",
+    "NETWORK_PRUNE_TITLE": "Network Prune Confirmation",
+    "NETWORK_PRUNE_MESSAGE": "This operation will delete unused networks. Are you sure, you want to Continue?"
+  },
+  "DATA": {
+    "REGISTRY": [{
+        "value": "http://hub.bakelor.com",
+        "address": "hub.bakelor.com"
+      },
+      {
+        "value": "https://registry-1.docker.io",
+        "address": "registry-1.docker.io"
+      }
+    ],
+    "VOLUME_DRIVERS": [{
+      "id": "local",
+      "name": "local"
+    }],
+    "PLATFORM": [{
+        "id": 1,
+        "name": "Multiple"
+      },
+      {
+        "id": 2,
+        "name": "Windows"
+      },
+      {
+        "id": 3,
+        "name": "Linux"
+      }
+    ],
+    "RESTART_POLICY": [{
+        "id": 0,
+        "name": "Undefined"
+      },
+      {
+        "id": 1,
+        "name": "No"
+      },
+      {
+        "id": 2,
+        "name": "Always"
+      },
+      {
+        "id": 3,
+        "name": "OnFailure"
+      },
+      {
+        "id": 4,
+        "name": "UnlessStopped"
+      }
+    ]
+  },
+  "TOOLTIP": {
+    "ALWAYS_PULL_IMAGE": "If checked, dockify will try to pull the image before creating the container.",
+    "AUTO_UPDATE": "If checked, container will be updated automatically",
+    "PROTECTED": "Protected containers cannot be deleted directly",
+    "EDIT_NAME": "Click to edit name"
+  }
+}

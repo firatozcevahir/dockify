@@ -1,0 +1,29 @@
+.main-div mat-card {
+  padding: 0px;
+}
+
+.login-form {
+  padding: 20px;
+}
+
+.passcodePanel {
+  height: 100%;
+  background:#fff url(../../../assets/images/login-background.png);
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-wrapper {
+  height: 100%;
+}
+
+.positronx {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.box {
+  max-width: 350px;
+}

@@ -1,0 +1,132 @@
+<div class="side-form">
+
+  <section fxLayout="row wrap" fxLayoutAlign="center center">
+    <form class="main-form" [formGroup]="dataFRM" novalidate autocomplete="off">
+      <mat-card>
+        <mat-card-title>
+          <h2 mat-dialog-title> {{TITLE}}</h2>
+        </mat-card-title>
+        <mat-card-content>
+
+          <!-- <mat-form-field appearance="outline">
+            <mat-label>{{'APPLICATIONS.SWARM.FIELDS.NAME'|translate}}</mat-label>
+            <input matInput  class="form-control" formControlName="name" id="name" maxlength="20"
+            required placeholder="örnek: manager1">
+
+            <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'20'} }}</mat-hint>
+            <mat-error *ngIf="hasError('name', 'maxlength')">
+              {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'20'} }}</mat-error>
+
+          </mat-form-field> -->
+
+          <mat-form-field appearance="outline">
+            <mat-label>{{'APPLICATIONS.SWARM.FIELDS.LISTEN_ADDRESS'|translate}}</mat-label>
+            <input matInput class="form-control" formControlName="listenAddr" id="listenAddr" maxlength="50" required
+              placeholder="örnek: 0.0.0.0:2377">
+
+            <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'50'} }}</mat-hint>
+            <mat-error *ngIf="hasError('listenAddr', 'maxlength')">
+              {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'50'} }}</mat-error>
+
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>{{'APPLICATIONS.SWARM.FIELDS.ADVERTISE_ADDRESS'|translate}}</mat-label>
+            <input matInput type="text" placeholder="örnek: 192.168.1.1:2377" formControlName="advertiseAddr"
+              id="advertiseAddr" cdkFocusInitial maxlength="50" required>
+
+            <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'500'} }}</mat-hint>
+            <mat-error *ngIf="hasError('advertiseAddr', 'required')">{{'SYSTEM.VALIDATION.NAME_REQUIRED'|translate}}
+            </mat-error>
+            <mat-error *ngIf="hasError('advertiseAddr', 'maxlength')">
+              {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'50'} }}</mat-error>
+
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>{{'APPLICATIONS.SWARM.FIELDS.DATA_PATH_ADDRESS'|translate}}</mat-label>
+            <input matInput type="text" placeholder="örnek: 192.168.1.1" formControlName="dataPathAddr"
+              id="dataPathAddr" cdkFocusInitial maxlength="20">
+
+            <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'20'} }}</mat-hint>
+            <mat-error *ngIf="hasError('dataPathAddr', 'maxlength')">
+              {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'20'} }}</mat-error>
+
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>{{'APPLICATIONS.SWARM.FIELDS.DATA_PATH_PORT'|translate}}</mat-label>
+            <input matInput type="number" formControlName="dataPathPort" id="dataPathPort" cdkFocusInitial
+              maxlength="5">
+
+            <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'5'} }}</mat-hint>
+            <mat-error *ngIf="hasError('dataPathPort', 'maxlength')">
+              {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'5'} }}</mat-error>
+
+          </mat-form-field>
+
+          <mat-slide-toggle class="example-margin" formControlName="forceNewCluster" id="forceNewCluster"
+            (change)="handleToggle($event)">
+            {{'APPLICATIONS.SWARM.FIELDS.FORCE_NEW_CLUSTER'|translate}}
+          </mat-slide-toggle>
+
+          <br />
+          <!-- <mat-slide-toggle class="example-margin" formControlName="availability" id="availability"
+            (change)="handleToggle($event)">
+            {{'APPLICATIONS.SWARM.FIELDS.AVAILABILITY'|translate}}
+          </mat-slide-toggle> -->
+
+          <br />
+          <mat-slide-toggle class="example-margin" formControlName="autoLockManagers" id="autoLockManagers"
+            (change)="handleToggle($event)">
+            {{'APPLICATIONS.SWARM.FIELDS.AUTO_LOCK_MANAGER'|translate}}
+          </mat-slide-toggle>
+
+
+          <mat-form-field appearance="outline">
+            <mat-label>{{'APPLICATIONS.SWARM.FIELDS.SUBNET_SIZE'|translate}}</mat-label>
+            <input matInput type="number" formControlName="subnetSize" id="subnetSize" cdkFocusInitial maxlength="6">
+
+            <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'6'} }}</mat-hint>
+            <mat-error *ngIf="hasError('subnetSize', 'maxlength')">
+              {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'6'} }}</mat-error>
+          </mat-form-field>
+          <br />
+          <mat-label>{{'APPLICATIONS.SWARM.FIELDS.HEARTBEAT_PERIOD'|translate}}</mat-label>
+          <mat-slider thumbLabel tickInterval="auto" min="-1" max="100" formControlName="heartbeatPeriod"
+            id="heartbeatPeriod">
+          </mat-slider>
+          <br />
+          <mat-label>{{'APPLICATIONS.SWARM.FIELDS.TASK_HISTORY_LIMIT'|translate}}</mat-label>
+          <mat-slider thumbLabel tickInterval="auto" min="-1" max="100" formControlName="taskHistoryRetentionLimit"
+            id="taskHistoryRetentionLimit">
+          </mat-slider>
+          <br />
+
+          <div>
+            <tag-input formControlName="defaultAddrPool" id="defaultAddrPool" theme="dark" [blinkIfDupe]="true"
+              [modelAsStrings]="true" [trimTags]="false"
+              [secondaryPlaceholder]="'APPLICATIONS.SWARM.FIELDS.DEFAULT_ADDRESS_POOL'|translate"
+              placeholder="örnek:  192.168.1.1/8 ">
+            </tag-input>
+          </div>
+
+        </mat-card-content>
+
+          <mat-card-actions align="end">
+            <button mat-raised-button color="primary" [disabled]="!dataFRM.valid" tabindex="1" (click)="saveData()" [loading]="isRequesting">
+              <mat-icon>save</mat-icon>
+              {{'SYSTEM.RECORD.SAVE'|translate}}
+            </button>
+
+            <button type="button" mat-raised-button color="warn" routerLink="/app/swarm">
+              <mat-icon>clear</mat-icon>
+              {{'SYSTEM.RECORD.CANCEL'|translate}}
+            </button>
+          </mat-card-actions>
+      </mat-card>
+
+    </form>
+
+  </section>
+</div>

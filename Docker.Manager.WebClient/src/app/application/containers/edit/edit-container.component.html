@@ -1,0 +1,333 @@
+<div class="container-side-form">
+  <form class="main-form" [formGroup]="dataFRM" novalidate autocomplete="off">
+
+    <mat-card>
+      <mat-card-title>
+        <h2>{{TITLE}}</h2>
+      </mat-card-title>
+
+      <mat-card-content>
+        <mat-tab-group dynamicHeight="true" backgroundColor="primary" style="height: 100%; overflow: hidden;">
+          <mat-tab label="{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.TAB1'|translate}}">
+
+            <ng-select formControlName="appTemplate" id="appTemplate" [items]="appTemplates" bindLabel="templateTitle"
+              bindValue="templateTitle" [multiple]="false" [virtualScroll]="true" [clearable]="false"
+              style="width: 100%;" placeholder="{{'APPLICATIONS.DOCKER_IMAGE.FIELDS.APP_TEMPLATE' | translate}}"
+              (change)="handleTemplateChange($event)">
+              <ng-template ng-option-tmp let-item="item" let-index="index">
+
+                <div fxLayout="row" fxLayoutAlign="none" fxLayoutGap="10px">
+                  <div fxFlex="10" fxFlex.md="10" fxFlex.sm="10" fxFlex.xs="10" fxLayout="column"
+                    class="app-template-image" style="background-image: url({{item.logoURL}});">
+                    <img [src]="item.logoURL" (error)="onImgError($event)" style="display: none;">
+                  </div>
+                  <div fxFlex="90" fxFlex.md="90" fxFlex.sm="90" fxFlex.xs="90" fxLayout="column">
+                    <b>{{item.templateTitle}}</b>
+                    <small>{{item.description}}</small>
+                  </div>
+                </div>
+
+              </ng-template>
+            </ng-select>
+
+            <mat-form-field appearance="fill">
+              <mat-label>{{'APPLICATIONS.DOCKER_IMAGE.FIELDS.REGISTRY_NAME'|translate}}</mat-label>
+              <mat-select formControlName="fromSrc" id="fromSrc" (selectionChange)="handleRegistryChange()">
+                <mat-option *ngFor="let item of dockerRegistryList" [value]="item">
+                  {{item.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label> {{ dataFRM.controls.fromSrc.value?.registryUrl | formaturl }}/ </mat-label>
+              <input type="text" matInput class="form-control" formControlName="image" id="image"
+                [matAutocomplete]="auto">
+              <mat-hint align="end">
+                <ng-container *ngIf="!imageProgressData">
+                  {{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'100'} }}
+                </ng-container>
+
+                {{ imageProgressData?.id }}
+                {{ imageProgressData?.status }}
+                <span *ngIf="imageProgressData?.progress">
+                  {{ imageProgressData.progress.current | formatbytes:3 }}/{{ imageProgressData.progress.total |
+                  formatbytes:3 }}
+                </span>
+              </mat-hint>
+              <mat-error *ngIf="hasError('image', 'required')">{{'SYSTEM.VALIDATION.NAME_REQUIRED'|translate}}
+              </mat-error>
+              <mat-error *ngIf="hasError('image', 'maxlength')">
+                {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'100'} }}</mat-error>
+
+              <mat-icon *ngIf="dataFRM.controls.image.value" matSuffix (click)="dataFRM.controls.image.setValue('')">
+                clear
+              </mat-icon>
+
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let img of filteredImages | async" [value]="img">
+                  {{img}}
+                </mat-option>
+              </mat-autocomplete>
+
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>{{'APPLICATIONS.DOCKER_IMAGE.FIELDS.COMPANY_NAME'|translate}}</mat-label>
+              <mat-select formControlName="company" id="company">
+                <mat-option [value]="null">
+                  {{'APPLICATIONS.DOCKER_IMAGE.FIELDS.NO_COMPANY'|translate}}
+                </mat-option>
+                <mat-option *ngFor="let item of companyList" [value]="item">
+                  {{item.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label> {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.NAME'|translate}} </mat-label>
+              <input matInput type="text" class="form-control" formControlName="name" id="name">
+
+              <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'200'} }}</mat-hint>
+              <mat-error *ngIf="hasError('name', 'required')">{{'SYSTEM.VALIDATION.NAME_REQUIRED'|translate}}
+              </mat-error>
+              <mat-error *ngIf="hasError('name', 'maxlength')">
+                {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'200'} }}</mat-error>
+            </mat-form-field>
+            <br />
+
+            <mat-slide-toggle class="example-margin" formControlName="alwaysPullImage" id="alwaysPullImage" color="primary">
+              {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.ALWAYS_PULL_IMAGE'|translate}}
+            </mat-slide-toggle>
+            <tps-tooltip msg="{{'TOOLTIP.ALWAYS_PULL_IMAGE' | translate}}"></tps-tooltip>
+            <br />
+
+            <mat-slide-toggle class="example-margin" formControlName="publishAllPorts" id="publishAllPorts"
+              color="primary">
+              {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.RANDOM_PORTS'|translate}}
+            </mat-slide-toggle>
+            <br />
+
+            <div *ngIf="!dataFRM.controls.publishAllPorts.value">
+              <tag-input formControlName="ports" id="ports" theme="bootstrap" [blinkIfDupe]="true"
+                [modelAsStrings]="true" [trimTags]="true"
+                [secondaryPlaceholder]="'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.PORT_NO'|translate"
+                placeholder="{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.PORT_NO'|translate}}">
+              </tag-input>
+            </div>
+
+            <mat-slide-toggle class="example-margin" formControlName="isProtected" id="isProtected" color="primary">
+              {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.PROTECTED'|translate}}              
+            </mat-slide-toggle>
+            <tps-tooltip msg="{{'TOOLTIP.PROTECTED' | translate}}"></tps-tooltip>
+            <br />
+
+            <mat-slide-toggle class="example-margin" formControlName="tty" id="tty">
+              {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.TTY'|translate}}
+            </mat-slide-toggle>
+
+            <br />
+            <mat-slide-toggle class="example-margin" formControlName="startContainer" id="startContainer">
+              {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.START_CONTAINER'|translate}}
+            </mat-slide-toggle>
+
+            <br />
+            <mat-slide-toggle class="example-margin" formControlName="autoUpdate" id="autoUpdate">
+              {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.AUTO_UPDATE'|translate}}
+            </mat-slide-toggle>
+            <tps-tooltip msg="{{'TOOLTIP.AUTO_UPDATE' | translate}}"></tps-tooltip>
+          </mat-tab>
+
+          <mat-tab label="{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.TAB2'|translate}}">
+
+            <div>
+              <tag-input formControlName="binds" id="binds" theme="dark" [blinkIfDupe]="true" [modelAsStrings]="true"
+                [trimTags]="false"
+                [secondaryPlaceholder]="'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.BINDS'|translate"
+                placeholder="{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.BINDS'|translate}}">
+              </tag-input>
+            </div>
+            <br />
+
+            <mat-form-field appearance="outline">
+              <mat-label> {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.ENTRY_POINT'|translate}} </mat-label>
+              <input matInput type="text"
+                placeholder="{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.ENTRY_POINT'|translate}} "
+                formControlName="entryPoint" id="entryPoint" maxlength="200">
+              <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'200'} }}</mat-hint>
+              <mat-error *ngIf="hasError('entryPoint', 'maxlength')">
+                {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'200'} }}</mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline">
+              <mat-label> {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.COMMAND'|translate}} </mat-label>
+              <input matInput type="text"
+                placeholder="{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.COMMAND'|translate}} /usr/bin/nginx -t -c /mynginx.conf"
+                formControlName="cmd" id="cmd" maxlength="200">
+              <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'200'} }}</mat-hint>
+              <mat-error *ngIf="hasError('cmd', 'maxlength')">
+                {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'200'} }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label> {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.STORATE_PATH'|translate}} </mat-label>
+              <input matInput type="text"
+                placeholder="{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.STORATE_PATH'|translate}}"
+                formControlName="storagePath" id="storagePath" cdkFocusInitial maxlength="200">
+              <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'200'} }}</mat-hint>
+              <mat-error *ngIf="hasError('storagePath', 'maxlength')">
+                {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'200'} }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label> {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.WORKING_DIR'|translate}} </mat-label>
+              <input matInput type="text"
+                placeholder="{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.WORKING_DIR'|translate}}   ( /myapp )"
+                formControlName="workingDir" id="workingDir" cdkFocusInitial maxlength="200">
+              <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'200'} }}</mat-hint>
+              <mat-error *ngIf="hasError('workingDir', 'maxlength')">
+                {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'200'} }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>{{'APPLICATIONS.DOCKER_IMAGE.FIELDS.RESTART_POLICY'|translate}}</mat-label>
+              <mat-select formControlName="restartPolicy" id="restartPolicy">
+                <mat-option *ngFor="let item of (restartPolicy$|async)" [value]="item.id">
+                  {{item.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.NETWORK_MODE'|translate}}</mat-label>
+              <mat-select formControlName="networkMode" id="networkMode">
+                <mat-option *ngFor="let item of networkList" [value]="item.name">
+                  {{item.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <br />
+            <div class="resource-slider-container">
+              {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.RESERVATION_MEMORY_BYTE'|translate}}
+              <span class="resource-slider-info">
+                {{memoryReservation.value === 0 ?
+                ('APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.UNLIMITED' | translate) :
+                (memoryReservation.value | formatbytes:2)}}
+              </span>
+              <br />
+              <mat-slider step="268435456" min="0" max="{{resources.memoryReservation}}"
+                formControlName="memoryReservation" #memoryReservation id="memoryReservation"
+                (input)="handleMemoryReserv(memoryReservation)">
+              </mat-slider>
+            </div>
+            <br />
+            <div class="resource-slider-container">
+              {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.LIMIT_MEMORY_BYTES'|translate}}
+              <span class="resource-slider-info">
+                {{memory.value === 0 ?
+                ('APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.UNLIMITED' | translate) :
+                (memory.value | formatbytes:2)}}
+              </span>
+              <br />
+              <mat-slider step="268435456" min="0" max="{{resources.memory}}" formControlName="memory" #memory
+                id="memory" (input)="handleMemoryLimit(memory)">
+              </mat-slider>
+            </div>
+            <br />
+            <div class="resource-slider-container">
+              {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.LIMIT_NANO_CPU'|translate}}
+              <span class="resource-slider-info">
+                {{nanoCpus.value === 0 ? ('APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.UNLIMITED' | translate) :
+                (nanoCpus.value + ' nCPU') }}
+              </span>
+              <br />
+              <mat-slider step=".25" min="0" max="{{resources.nanoCpus}}" formControlName="nanoCpus" #nanoCpus
+                id="nanoCpus">
+              </mat-slider>
+            </div>
+
+          </mat-tab>
+
+          <mat-tab label="{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.TAB4'|translate}}">
+
+            <mat-form-field appearance="outline">
+              <mat-label>{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.ENVIRONMENT'|translate}}</mat-label>
+              <textarea style="height: 200px;" formControlName="env" id="env" matInput
+                [placeholder]="'variable_name=value\nvariablename2=value2'">
+              </textarea>
+              <mat-hint align="end">{{ 'SYSTEM.HINT.ENV_VARIABLE_EACH_ROW' | translate}}</mat-hint>
+            </mat-form-field>
+          </mat-tab>
+
+          <mat-tab label="{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.TAB3'|translate}}">
+            <mat-form-field appearance="outline">
+              <mat-label> {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.DOMAIN_NAME'|translate}} </mat-label>
+              <input matInput type="text"
+                placeholder="{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.DOMAIN_NAME'|translate}}"
+                formControlName="domainname" id="domainname" cdkFocusInitial maxlength="200">
+
+              <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'200'} }}</mat-hint>
+              <mat-error *ngIf="hasError('domainname', 'maxlength')">
+                {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'200'} }}</mat-error>
+            </mat-form-field>
+            <div>
+              <tag-input formControlName="dnsName" id="dnsName" theme="bootstrap" [blinkIfDupe]="true"
+                [modelAsStrings]="true" [trimTags]="false"
+                [secondaryPlaceholder]="'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.DNS_ADDRESS'|translate"
+                [placeholder]="'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.DNS_ADDRESS'|translate">
+              </tag-input>
+            </div>
+
+            <br />
+
+            <mat-form-field appearance="outline">
+              <mat-label> {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.HOST_NAME'|translate}} </mat-label>
+              <input matInput type="text"
+                placeholder="{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.HOST_NAME'|translate}}"
+                formControlName="hostname" id="hostname" cdkFocusInitial maxlength="200">
+
+              <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'200'} }}</mat-hint>
+              <mat-error *ngIf="hasError('hostname', 'maxlength')">
+                {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'200'} }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label> {{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.MAC_ADDRESS'|translate}} </mat-label>
+              <input matInput type="text"
+                placeholder="{{'APPLICATIONS.DOCKER_MANAGER.CONTAINERS.FIELDS.MAC_ADDRESS'|translate}}  ( 00:02:02:34:72:a5 )"
+                formControlName="macAddress" id="macAddress" cdkFocusInitial maxlength="20">
+
+              <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'20'} }}</mat-hint>
+              <mat-error *ngIf="hasError('macAddress', 'maxlength')">
+                {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'20'} }}</mat-error>
+            </mat-form-field>
+
+          </mat-tab>
+        </mat-tab-group>
+
+      </mat-card-content>
+
+      <br />
+
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" [disabled]="!dataFRM.valid" tabindex="1" (click)="saveData()"
+          [loading]="isRequesting">
+          <mat-icon>save</mat-icon>
+          {{'SYSTEM.RECORD.SAVE'|translate}}
+        </button>
+
+        <button type="button" mat-raised-button color="warn" routerLink="/app/docker-containers">
+          <mat-icon>clear</mat-icon>
+          {{'SYSTEM.RECORD.CANCEL'|translate}}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+  </form>
+
+  <!-- <pre>
+    {{dataFRM.value | json}}
+  </pre> -->
+</div>

@@ -1,0 +1,39 @@
+<div class="side-form">
+  <section fxLayout="row wrap" fxLayoutAlign="center center">
+    <form class="main-form" [formGroup]="dataFRM" novalidate autocomplete="off">
+      <mat-card>
+        <mat-card-title>
+          <h2 mat-dialog-title> {{TITLE}}</h2>
+        </mat-card-title>
+        <mat-card-content>
+          <mat-form-field appearance="outline">
+            <mat-label>{{'APPLICATIONS.SHELLSCRIPTS.FIELDS.NAME'|translate}}</mat-label>
+            <input matInput type="text" formControlName="name" id="name" cdkFocusInitial maxlength="50" required>
+            <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'50'} }}</mat-hint>
+            <mat-error *ngIf="hasError('name', 'required')">{{'SYSTEM.VALIDATION.NAME_REQUIRED'|translate}}</mat-error>
+            <mat-error *ngIf="hasError('name', 'maxlength')">
+              {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'50'} }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>{{'APPLICATIONS.SHELLSCRIPTS.FIELDS.SCRIPT_CONTENT'|translate}}</mat-label>
+            <textarea style="height: 200px;" formControlName="content" id="content" matInput
+              [placeholder]="'#!/bin/bash'" required>
+            </textarea>
+            <mat-hint align="end">{{ 'SYSTEM.HINT.SHELLSCRIPT_CONTENT' | translate}}</mat-hint>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-raised-button color="primary" [disabled]="!dataFRM.valid || dataFRM.pristine" tabindex="1" [loading]="isRequesting"
+            (click)="saveData()">
+            {{'SYSTEM.RECORD.SAVE'|translate}}
+          </button>
+
+          <button type="button" mat-raised-button color="warn" routerLink="/app/shell-scripts">
+            {{'SYSTEM.RECORD.CANCEL'|translate}}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </section>
+</div>

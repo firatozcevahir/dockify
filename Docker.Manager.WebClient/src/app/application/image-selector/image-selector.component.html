@@ -1,0 +1,36 @@
+<mat-toolbar color="danger">
+  <h5>{{title}}</h5>
+</mat-toolbar>
+
+<mat-card class="mat-typography">
+
+  <mat-card-content>
+
+    <ng-select [items]="hubList" bindLabel="name" bindValue="id" [multiple]="false" [virtualScroll]="true"
+      [clearable]="false" style="width: 100%;" (change)="getSelectedData($event)"
+      placeholder="{{'APPLICATIONS.DOCKER_MANAGER.HUBS'|translate}}">
+
+      <ng-template ng-label-tmp let-item="item">
+        <b>{{item.starCount|number}}</b> {{item.name}}<br />
+        <b *ngIf="item.description">&nbsp;<small>{{item.description}}</small></b>
+      </ng-template>
+
+      <ng-template ng-option-tmp let-item="item" let-index="index">
+        <b>{{item.starCount|number}}</b> {{item.name}}<br />
+        <b *ngIf="item.description">&nbsp;<small>{{item.description}}</small></b>
+      </ng-template>
+
+    </ng-select>
+
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-raised-button color="primary" tabindex="1" (click)="onClose(true)">
+      {{'SYSTEM.RECORD.OK'|translate}}
+    </button>
+
+    <button mat-raised-button color="danger" tabindex="1" (click)="onClose(false)">
+      {{'SYSTEM.RECORD.CANCEL'|translate}}
+    </button>
+  </mat-card-actions>
+</mat-card>

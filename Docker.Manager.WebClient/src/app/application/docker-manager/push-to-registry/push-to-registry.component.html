@@ -1,0 +1,56 @@
+<mat-toolbar color="danger">
+    {{'SYSTEM.RECORD.PUSH_TO_REGISTRY'|translate}} |
+    <span class="header-image-title" style="margin-left: 10px;">{{record.repoTags[0]}}</span>
+    <span class="example-fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+
+
+<form class="tag-form" [formGroup]="pushFRM" novalidate autocomplete="off">
+
+    <mat-form-field>
+        <input matInput type="text" formControlName="id" id="id" cdkFocusInitial>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="text" placeholder="{{'APPLICATIONS.DOCKER_IMAGE.FIELDS.REPOSITORY_NAME'|translate}}"
+            formControlName="repoName" id="repoName" cdkFocusInitial maxlength="100" required>
+        <mat-hint align="end">{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'100'} }}</mat-hint>
+        <mat-error *ngIf="hasError('repoName', 'required')">{{'SYSTEM.VALIDATION.NAME_REQUIRED'|translate}}
+        </mat-error>
+        <mat-error *ngIf="hasError('repoName', 'maxlength')">
+            {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'100'} }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="text" placeholder="{{'APPLICATIONS.DOCKER_IMAGE.FIELDS.TAG_NAME'|translate}}"
+            formControlName="tag" id="tag" cdkFocusInitial maxlength="100" required>
+        <mat-hint>{{ 'SYSTEM.VALIDATION.LENGTH_MAX' | translate:{'length':'100'} }}</mat-hint>
+        <mat-error *ngIf="hasError('tag', 'required')">{{'SYSTEM.VALIDATION.NAME_REQUIRED'|translate}}</mat-error>
+        <mat-error *ngIf="hasError('tag', 'maxlength')">
+            {{ 'SYSTEM.VALIDATION.MORE_THEN_LENGTH' | translate:{'length':'100'} }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>{{'APPLICATIONS.DOCKER_IMAGE.FIELDS.REGISTRY_NAME'|translate}}</mat-label>
+        <mat-select formControlName="fromSrc" id="fromSrc">
+            <mat-option *ngFor="let item of dockerRegistryList" [value]="item">
+                {{item.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" [disabled]="!pushFRM.valid || imagePushProgressData?.status" tabindex="1"
+        (click)="saveData()">
+        <span *ngIf="!isRequesting || !imagePushProgressData?.status">{{'SYSTEM.RECORD.SAVE'|translate}}</span>
+
+        <span *ngIf="imagePushProgressData?.status">
+            {{ imagePushProgressData?.id }}
+            {{ imagePushProgressData?.status }}
+            {{ imagePushProgressData.progress?.current | formatbytes:3 }}/
+            {{ imagePushProgressData.progress?.total | formatbytes:3 }}
+        </span>
+    </button>
+</form>

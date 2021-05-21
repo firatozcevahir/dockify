@@ -1,0 +1,21 @@
+<mat-toolbar color="danger">
+    {{'SYSTEM.RECORD.LOGS'|translate}} |
+    <span class="header-container-title">{{ containerName }}</span>
+    <span class="header-image-title small-image-name">{{ imageName }}</span>
+    <span class="example-fill-remaining-space"></span>
+    <mat-spinner *ngIf="isRequesting" diameter="20"></mat-spinner>
+    <mat-slide-toggle class="example-margin" [(ngModel)]="autoRefreshLogs" id="autoRefreshLogs"
+        (change)="toggleAutoRefreshLogs($event.checked)">Auto Refresh
+    </mat-slide-toggle>
+    <button mat-icon-button (click)="loadData()" color="primary" title="{{'SYSTEM.REFRESH' | translate}}">
+        <mat-icon>cached</mat-icon>
+      </button>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose(false)" tabIndex="-1">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+<div class="container-log-container" #target>
+    <ng-container>
+        <pre class="container-log" *ngIf="containerLog" [innerHtml]="containerLog | sanitizeHtml"></pre>
+    </ng-container>
+</div>

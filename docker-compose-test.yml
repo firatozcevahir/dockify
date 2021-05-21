@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  webapp1:
+    image: hub.bakelor.com/webapp1
+    ports:
+      - "18109:80"
+  customerapp2:
+    image: hub.bakelor.com/customerwebapp2
+    ports:
+      - "18110:80"

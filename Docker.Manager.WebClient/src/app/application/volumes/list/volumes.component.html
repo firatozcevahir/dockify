@@ -1,0 +1,144 @@
+<div fxLayout="row" fxLayoutAlign="space-between">
+
+  <div fxFlex="100%">
+    <mat-toolbar class="custom-mat-toolbar ">
+      {{'APPLICATIONS.DOCKER_MANAGER.VOLUMES.TITLE'| translate}}
+      <button mat-icon-button (click)="loadData()" color="primary" title="{{'SYSTEM.REFRESH' | translate}}">
+        <mat-icon>cached</mat-icon>
+      </button>
+      <span class="example-fill-remaining-space"></span>
+      <button mat-raised-button (click)="pruneUnusedVolumes()" color="warn">
+        <mat-icon>clear_all</mat-icon>
+      </button>
+
+    </mat-toolbar>
+
+    <mat-card>
+      <mat-card-content>
+        <tps-search-bar></tps-search-bar>
+        <div class="t-container mat-elevation-z0">
+          <mat-progress-bar mode='indeterminate' *ngIf="isRequesting"></mat-progress-bar>
+
+          <table mat-table [dataSource]="dataSource" class="table table-striped" matSort>
+
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> {{'SYSTEM.RECORD.ACTION_BUTTON'| translate}} </th>
+              <td mat-cell *matCellDef="let element" data-label="id">
+                <button mat-button color="primary" [matMenuTriggerFor]="menu">
+                  <mat-icon>settings</mat-icon>
+                  <mat-icon>keyboard_arrow_down</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+
+                  <button mat-menu-item (click)="inspectVolume(element)">
+                    <mat-icon class="mat-18">search</mat-icon> {{'SYSTEM.RECORD.INSPECT_PROCESS'|translate}}
+                  </button>
+
+                  <button mat-menu-item color="warn" (click)="delete(element)">
+                    <mat-icon class="mat-18">delete</mat-icon> {{'SYSTEM.RECORD.DELETE'|translate}}
+                  </button>
+
+                </mat-menu>
+              </td>
+
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{'APPLICATIONS.DOCKER_MANAGER.VOLUMES.NAME'| translate}}
+              </th>
+              <td mat-cell *matCellDef="let element" data-label="name">
+                <span class="field-title d-none d-b-sm">
+                  {{'APPLICATIONS.DOCKER_MANAGER.VOLUMES.NAME'| translate}} :
+                </span>
+                {{getId(element.name)}}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="driver">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{'APPLICATIONS.DOCKER_MANAGER.VOLUMES.DRIVER'| translate}}
+              </th>
+              <td mat-cell *matCellDef="let element" data-label="driver">
+                <span class="field-title d-none d-b-sm">
+                  {{'APPLICATIONS.DOCKER_MANAGER.VOLUMES.DRIVER'| translate}} :
+                </span>
+                {{element.driver}}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="mountpoint">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{'APPLICATIONS.DOCKER_MANAGER.VOLUMES.MOUNT_POINT'| translate}}
+              </th>
+              <td mat-cell *matCellDef="let element" data-label="mountpoint">
+                <span class="field-title d-none d-b-sm">
+                  {{'APPLICATIONS.DOCKER_MANAGER.VOLUMES.MOUNT_POINT'| translate}} :
+                </span>
+                {{element.mountpoint}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="createdAt">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'SYSTEM.RECORD.CREATED_ON'| translate}} </th>
+              <td mat-cell *matCellDef="let element" data-label="createdAt">
+                <span class="field-title d-none d-b-sm">
+                  {{'SYSTEM.RECORD.CREATED_ON'| translate}} :
+                </span>
+                {{element.createdAt| dateTimeFormat}}
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+            <tr mat-row [ngClass]="{'make-gold': row.isLockedOut }" *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell no-data-cell" colspan="5">
+                <img src="assets/images/is-requesting.png" *ngIf="isRequesting" />                
+                <ng-container *ngIf="!isRequesting && !isServerError">
+                  <img src="assets/images/no-data.png" />
+                  <br>
+                  <span class="no-records">
+                    {{'SYSTEM.NO_RECORDS' | translate}}
+                  </span>  
+                  <button mat-button color="primary" routerLink="add">
+                    {{'SYSTEM.CLICK_TO_CREATE' | translate}}
+                  </button>
+                </ng-container>
+                <ng-container *ngIf="isServerError">
+                  <img src="assets/images/no-data.png" />
+                  <br>
+                  <span class="sth-went-wrong">
+                    {{'SYSTEM.STH_WENT_WRONG' | translate}}
+                  </span>
+                  <button mat-button color="primary" (click)="loadData()">
+                    {{'SYSTEM.TRY_AGAIN' | translate}}
+                  </button>
+                </ng-container>
+              </td>
+            </tr>
+          </table>
+
+        </div>
+
+      </mat-card-content>
+
+      <mat-card-footer>
+        <mat-paginator #paginator [length]="itemCount" [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 20, 50, 100, 200, 400, 1000]" (page)="pageChanged($event)"
+          showFirstLastButtons="true">
+        </mat-paginator>
+      </mat-card-footer>
+
+    </mat-card>
+
+  </div>
+
+  <button mat-fab align="end" id="my-add-button" color="primary" routerLink="add" [disabled]="isDownloadingImage">
+    <mat-icon>add</mat-icon>
+  </button>
+
+</div>
+
+<div class="view-side-form">
+  <router-outlet></router-outlet>
+</div>

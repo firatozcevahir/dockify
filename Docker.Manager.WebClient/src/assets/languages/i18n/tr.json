@@ -1,0 +1,554 @@
+{
+  "SYSTEM": {
+    "LANGUAGE": "Türkçe",
+    "APP_NAME": "Dockify",
+    "WELCOME_TEXT": "Bakelor Dockify'a Hoş Geldiniz",
+    "ERROR": "General System Error",
+    "COPYRIGHT": "Dockify© Bakelor Tüm Hakları Saklıdır",
+    "TEL_NUMBER": "+90 216 (pbx)",
+    "EMAIL_ADDRESS": "info@bakelor.com.tr",
+    "CLOSE": "Kapat",
+    "BACK_BUTTON_TEXT": "Geri",
+    "COPIED": "Kopyalandı",
+    "WARNING": "Uyarı",
+    "REFRESH": "Yenile",
+    "SERVER_ERROR": "Sunucu Hatası",
+    "STH_WENT_WRONG": "Bir Şeyler Ters Gitti.",
+    "TRY_AGAIN": "Tekrar Dene",
+    "NO_RECORDS": "Gösterilecek kayıt bulunamadı.",
+    "CLICK_TO_CREATE": "Oluşturmak için Tıklayınız",
+    "RECORD": {
+      "ACTION_BUTTON": "İşlemler",
+      "ADD": "Ekle",
+      "STATE_EDIT": "Düzenle",
+      "COPY": "Kopya",
+      "CLONE": "Klonla",
+      "STATE_INSERT": "Oluştur",
+      "PULL_IMAGE": "İmaj İndir",
+      "START_PROCESS": "Başlat",
+      "RESTART_PROCESS": "Yeniden Başlat",
+      "EXEC": "Exec",
+      "STOP_PROCESS": "Durdur",
+      "PAUSE_PROCESS": "Duraklat",
+      "UNPAUSE_PROCESS": "Devam Ettir",
+      "COMMAND_LINE": "Komut Satırı",
+      "CONTAINER_STATS": "İstatistikler",
+      "LOGS": "Loglar",
+      "CPU_USAGE": "İşlemci Kullanımı",
+      "MEMORY_USAGE": "Bellek Kullanımı",
+      "DISK_USAGE_RW": "Disk Kullanımı Okuma/Yazma",
+      "NETWORK_USAGE": "Ağ I/O",
+      "CREATE_IMAGE": "Yeni İmaj Yarat",
+      "CONTAINER_NOT_RUNNING": "Konteyner Başlatılmamış",
+      "OPEN_IN_BROWSER": "Tarayıcıda Aç",
+      "INSPECT_PROCESS": "İncele",
+      "IMAGE_HISTORY": "İmaj Geçmişi",
+      "PUSH_TO_REGISTRY": "Registry'ye Yükle",
+      "TAG_IMAGE": "İmajı Etiketle",
+      "UPDATE_IMAGE": "İmajı Güncelle",
+      "CONNECT_TO_NETWORK": "Ağa Bağla",
+      "DISCONNECT_FROM_NETWORK": "Ağdan Çık",
+      "RENAME_PROCESS": "Adı Değiştir",
+      "CREATED_ON": "Oluşturma",
+      "UPDATED_ON": "Güncelleme",
+      "DETAIL": "Detay",
+      "DELETE": "Sil",
+      "REMOVE": "Sil",
+      "SEARCH": "Ara",
+      "FILTER": "Filtrele",
+      "TOTAL": "Toplam ",
+      "MORE": "Daha Fazla",
+      "ACTIVE": "Aktif",
+      "PASSIVE": "Pasif",
+      "SELECT": "Seçiniz...",
+      "SAVE": "Kaydet",
+      "OK": "Tamam",
+      "CONFIRM": "Onayla",
+      "ARE_YOU_SURE": "Emin misiniz?",
+      "IS_DELETING": " Siliniyor.",
+      "IS_PROCESSING": "İşleniyor",
+      "LOADING_TEXT": "Açılıyor..",
+      "YES": "Evet",
+      "NO": "Hayır",
+      "CANCEL": "İptal",
+      "OPERATION_CANCELED": "Operasyon iptal edildi",
+      "STATUS": "Durum",
+      "PROCESS_COMPLETED": "İşlem Tamamlandı.",
+      "PROCESS_FAILED": "İşlem Başarısız.",
+      "LIST_TASKS": "Görevleri Görünütle",
+      "PROTECTED": "Korumalı",
+      "DIRECTORIES": "Dizinler",
+      "DETAILS": "Detaylar",
+      "PAGINATION": {
+        "FIRST_PAGE_LABEL": "ilk sayfa",
+        "LST_PAGE_LABEL": "son sayfa",
+        "NEXT_PAGE_LABEL": "sonraki sayfa",
+        "PREVIOUS_PAGE_LABEL": "önceki sayfa",
+        "ITEMS_PER_PAGE_LABEL": "sayfa başına kayıt"
+      }
+    },
+    "HINT": {
+      "ENV_VARIABLE_EACH_ROW": "Her Satırda Bir Çevresel Değişken",
+      "SHELLSCRIPT_CONTENT":"Shell komutlarını girin"
+    },
+    "VALIDATION": {
+      "NAME_REQUIRED": "İsim zorunludur",
+      "ENTER_CURRENT_PASSWORD": "Lütfen güncel parolanızı giriniz.",
+      "EMAIL_REQUIRED": "E-posta zorunludur",
+      "PHONE_REQUIRED": "Telefon zorunludur",
+      "USERNAME_REQUIRED": "Kullanıcı adı zorunludur",
+      "LENGTH_MAX": "{{length}} karakterden fazla olamaz.",
+      "LENGTH_MIN": "En az {{length}} karakter girmelisiniz.",
+      "MORE_THEN_LENGTH": "{{length}} karakterden daha fazla olmalıdır.",
+      "PASSWORD_NOT_MATCH": "Parolalar eşleşmiyor",
+      "PASSWORD_NOT_SAME_OLD": "Yeni parola eskisiyle aynı olmamalıdır.",
+      "PORT_REQUIRED": "Port Zorunludur"
+    },
+    "MENU": "Sistem",
+    "ACTION": {
+      "SUCCESS": "Başarılı",
+      "FAILURE": "Başarısız",
+      "INFO": "Bilgi",
+      "DATA_REFRESH": "Veriler Güncellendi",
+      "CON_CREATE_SUCCESS": "Konteyner Başarıyla Oluşturuldu",
+      "CON_START_SUCCESS": "Konteyner Başarıyla Başlatıldı",
+      "CON_RESTART_SUCCESS": "Konteyner Başarıyla Yeniden Başlatıldı",
+      "CON_STOP_SUCCESS": "Konteyner Başarıyla Durduruldu",
+      "CON_PAUSE_SUCCESS": "Konteyner Başarıyla Duraklatıldı",
+      "CON_UNPAUSE_SUCCESS": "Konteyner Başarıyla Devam Ettirildi",
+      "CON_DEL_SUCCESS": "Konteyner Başarıyla Silindi",
+      "CON_RENAME_SUCCESS": "Konteyner Başarıyla Adlandırıldı",
+      "IMG_DEL_SUCCESS": "İmaj Başarıyla Silindi",
+      "IMG_NOT_FOUND": "İmaj Bulunamadı",
+      "NETWORK_CONN_SUCCESS": "Başarıyla Bağlandı",
+      "NETWORK_DISCONN_SUCCESS": "Bağlantı Başarıyla Kesildi",
+      "NETWORK_CREATE_SUCCESS": "Ağ Başarıyla Oluşturuldu",
+      "NETWORK_DEL_SUCCESS": "Ağ Başarıyla Silindi",
+      "VOLUME_PRUNE_SUCCESS": "Kullanılmayan Volumes Başarıyla Silindi",
+      "VOLUME_DEL_SUCCESS": "Volume Başarıyla Silindi",
+      "SWARMSERVICE_DEL_SUCCESS": "Service Deleted Successfully",
+      "CON_PRUNE_SUCCESS": "Durdurulmuş Konteynerler Başarıyla Silindi",
+      "IMG_PRUNE_SUCCESS": "Kullanılmayan İmajlar Başarıyla Silindi",
+      "NETWORK_PRUNE_SUCCESS": "Kullanılmayan Ağlar Başarıyla Silindi"
+    }
+  },
+  "SECURITY": {
+    "TITLE": "Güvenlik",
+    "REMEMBER_ME": "beni hatırla",
+    "USERNAME": "Kullanıcı Adı",
+    "CHANGE_PASSWORD": "Parolayı Değiştir",
+    "PASSWORD": "Parola",
+    "NEW_PASSWORD": "Yeni Parola",
+    "NEW_PASSWORD_VERIFY": "Yeni Parolayı Onayla",
+    "FORGOT_PASSWORD": "Şifremi Unuttum",
+    "LOGIN": "Giriş",
+    "LOGOUT": "Çıkış",
+    "LOGIN_NOTE": "Sisteme telefon/kullanıcı adı ile giriş yapabilirsiniz.",
+    "ERROR": {
+      "WRONG_PASSWORD": "Hatalı Parola",
+      "LOGIN_FAILED": "Kullanıcı adı veya parola yanlış. Lütfen tekrar deneyiniz.",
+      "401": "Yetkili"
+    }
+  },
+  "LANGUAGES": {
+    "TITLE": "Dil"
+  },
+  "DASHBOARD": {
+    "TITLE": "Gösterge Paneli",
+    "IMAGES": "İmajlar",
+    "CONTAINERS": "Konteynerler",
+    "MEMORY": "Bellek",
+    "CPU": "İşlemci",
+    "VOLUMES": "Birimler",
+    "NETWORKS": "Ağlar",
+    "CONTAINER_RUNNING": "Çalışıyor",
+    "CONTAINER_STOPPED": "Durduruldu",
+    "CONTAINER_PAUSED": "Duraklatıldı",
+    "VERSION": "Versiyon"
+  },
+  "APPLICATIONS": {
+    "K8": {
+      "MENU": "Servis çoğaltma ve yönetme",
+      "TITLE": "K8"
+    },
+    "SWARM": {
+      "TITLE": "Swarm",
+      "LIST": "Swarm",
+      "TAB1": "GENEL",
+      "TAB2": "KAYNAKLAR",
+      "TAB3": "Ağ",
+      "FIELDS": {
+        "NAME": "Adı",
+        "LISTEN_ADDRESS": "Dinleme Adresi",
+        "ADVERTISE_ADDRESS": "Advertise Address",
+        "DATA_PATH_ADDRESS": "Veri Yolu Adresi",
+        "DATA_PATH_PORT": "Veri Yolu Portu",
+        "FORCE_NEW_CLUSTER": "Yeni Kümeye Zorla",
+        "DEFAULT_ADDRESS_POOL": "Varsayılan Adres Havuzu",
+        "AUTO_LOCK_MANAGER": "Yöneticiyi Otomatik Kilitle",
+        "AVAILABILITY": "Kullanılabilirlik",
+        "SUBNET_SIZE": "Alt Ağ Boyutu",
+        "TASK_HISTORY_LIMIT": "Görev Geçmişi Saklama Sınırı",
+        "HEARTBEAT_PERIOD": "Heartbeat Period",
+        "SPEC": "Spec"
+      },
+      "NODE": {
+        "ID": "Referans",
+        "DESCRIPTION": "Açıklama",
+        "MANAGER_STATUS": "Yönetim Durumu",
+        "SPEC_ROLE": "Rol",
+        "STATUS_ADDRESS": "Durum",
+        "CPU": "CPU",
+        "TOTAL_CPU": "Toplam CPU",
+        "MEMORY": "Bellek",
+        "TOTAL_MEMORY": "Total Bellek"
+      },
+      "SERVICE": {
+        "CONTAINER_NAME": "Konteyner Adı",
+        "IMAGE_NAME": "İmaj Adı",
+        "TARGET_PORT": "Hedef Port",
+        "PUBLISH_PORT": "Yayın Portu",
+        "REPLICATED": "Kopyalar",
+        "CPU_LIMIT": "CPU Sınırı",
+        "CPU_RESERVATION": "CPU reservation",
+        "MEMORY_LIMIT": "Bellek Limiti",
+        "MEMORY_RESERVATION": "Memory reservation",
+        "TASKS": {
+          "STATE": {
+            "RUNNING": "çalışıyor",
+            "NEW": "yeni",
+            "PREPARING": "hazırlanıyor",
+            "FAILED": "başarısız",
+            "PENDING": "bekliyor",
+            "STARTING": "başlatılıyor",
+            "READY": "hazır",
+            "ACCEPTED": "onaylandı",
+            "REJECTED": "reddedildi"
+          }
+        }
+      }
+    },
+    "DOCKER_MANAGER": {
+      "TITLE": "Docker Yönetimi",
+      "REPO_TAGS": "Repo Etiketleri",
+      "SIZE": "Boyut",
+      "IN_USE": "kullanımda",
+      "SIZE_IN_USE": "KULLANIMDA",
+      "SIZE_TOTAL": "TOTAL",
+      "HUBS": "Hub - İmaj Listesi",
+      "IMAGES": {
+        "FIELDS": {
+          "FROM_IMAGE": "İmaj Adı",
+          "REPOSITORY": "Repo",
+          "TAG": "Etiket Adı",
+          "FROM_SOURCE": "Kaynaktan",
+          "CREATE_CONTAINER": "Konteyner Yarat",
+          "PORT": "Port"
+        }
+      },
+      "VOLUMES": {
+        "TITLE": "Birimler",
+        "NAME": "Adı",
+        "DRIVER": "Sürücü",
+        "MOUNT_POINT": "Bağlama Noktası",
+        "SCOPE": "Kapsam",
+        "LABELS": "Etiket",
+        "OPTIONS": "Seçenek"
+      },
+      "NETWORKS": {
+        "TITLE": "Docker Ağ",
+        "NAME": "Adı",
+        "IPAM": "Ipam",
+        "SCOPE": "Scope",
+        "DRIVER": "Sürücü",
+        "ATTACHABLE": "Bağlanabilir",
+        "ENABLED_IPV6": "Ağda IPv6 etkinleştir",
+        "CHECK_DUPLICATE": "Aynı isimleri kontrol et",
+        "INTERNAL": "Ağa harici erişimi kısıtla",
+        "MAC_ADDRESS": "Mac Adresi",
+        "IP_ADDRESS": "IP Adresi",
+        "GATEWAY": "Ağ Geçidi"
+      },
+      "CONTAINERS": {
+        "ID": "Kimlik",
+        "START_TIME": "Başlama Zamanı",
+        "FINISH_TIME": "Durma Zamanı",
+        "CON_DETAILS": "Konteyner Detayları",
+        "CON_STATUS": "Konteyner Durumu",
+        "HOST_PATH": "Host Path",
+        "PATH_IN_CON": "Konteyner İçindeki Yol",
+        "CONNECTED_NETS": "Bağlanılan Ağlar",
+        "TITLE": "Konteynerler",
+        "IMAGE": "İmaj Adı",
+        "STATUS": "Durum",
+        "STATE": "Durumu",
+        "COMMAND": "Komut",
+        "PUBLISHED_PORTS": "Yayınlanan Portlar",
+        "RUNNING": "çalışıyor",
+        "EXITED": "durduruldu",
+        "CREATED": "oluşturuldu",
+        "PAUSED": "duraklatıldı",
+        "RESTARTING": "yeniden başlatılıyor",
+        "GRAPH_DRIVER": "Graph Sürücüsü",
+        "MERGED_DIR": "Merged Dizin",
+        "UPPER_DIR": "Üst Dizin",
+        "WORK_DIR": "Çalışma Dizini",
+        "PATHS": "Yollar",
+        "RESOLV_CONF_PATH": "ResolvConf Yolu",
+        "HOST_NAME_PATH": "Host Adı Yolu",
+        "HOSTS_PATH": "Hosts Yolu",
+        "LOG_PATH": "Log Yolu",
+        "MOUNTS": "Bağlar",
+        "SOURCE_DESTINATION": "Kaynak:Hedef",
+        "TAB1": "GENEL",
+        "TAB2": "KAYNAKLAR",
+        "TAB3": "AĞ",
+        "TAB4": "ÇEVRESELLER",
+        "USER": "Kullanıcı",
+        "CONNECT": "Bağlan",
+        "DISCONNECT": "Bağlantıyı Kes",
+        "CLI":"CLI",
+        "FIELDS": {
+          "NAME": "Adı",
+          "IMAGE": "İmaj",
+          "COMPANY": "Firma",
+          "DOMAIN_NAME": "Domain Adı",
+          "HOST_NAME": "Host Adı",
+          "MAC_ADDRESS": "Mac Adresi",
+          "STORATE_PATH": "Depolama Yolu",
+          "WORKING_DIR": "Çalışma Dizini",
+          "PORT_NO": "Host Port:Konteyner Port",
+          "PROPERTIES": "Özellikler",
+          "DNS_ADDRESS": "DNS Adı",
+          "TTY": "Tty",
+          "ALWAYS_PULL_IMAGE": "İmajı Her Zaman İndir",
+          "RANDOM_PORTS": "Tüm Portları Rastgele Portlara Ata",
+          "PUBLISH_RANDOM_PORTS": "Tüm Portlar Yayınlandı",
+          "PROTECTED": "Korumalı",
+          "START_CONTAINER": "Konteyneri Başlat",
+          "AUTO_UPDATE": "Otomatik Güncelle",
+          "ENVIRONMENT": "Çevresel Değişkenler",
+          "LABELS": "Etiketler",
+          "COMMAND": "Komut",
+          "ENTRY_POINT": "Giriş Noktası",
+          "ARGS": "Argümanlar",
+          "BINDS": "Bağlamalar",
+          "NETWORK_MODE": "Ağ",
+          "VOLUME_NAME": "Birim Adı",
+          "RESERVATION_MEMORY_BYTE": "Ayrılan Bellek",
+          "LIMIT_NANO_CPU": "CPU Limit",
+          "RESERVATION_NANO_CPU": "Ayrılan CPU",
+          "LIMIT_MEMORY_BYTES": "Bellek Limiti",
+          "UNLIMITED": "Sınırsız",
+          "UPDATE_PARALLELISM": "Update Paralellelism",
+          "UPDATE_DELAY": "Update Delay",
+          "UPDATE_FAILURE_ACTION": "Update Failure Action",
+          "UPDATE_ORDER": "Update Order",
+          "RESTART_CONDITION": "Restart Condition",
+          "RESTART_DELAY": "Restart Delay",
+          "RESTART_MAX_ATTEMPTS": "Restart Max Attempts",
+          "RESTART_WINDOW": "Restart Window"
+        }
+      },
+      "SERVICES": {
+        "TITLE": "Servisler"
+      }
+    },
+    "DOCKER_IMAGE": {
+      "TITLE": "Uygulama Şablonu",
+      "TAB1": "Genel Bilgiler",
+      "TAB2": "Çevresel Veriler",
+      "FIELDS": {
+        "TITLE": "Başlık",
+        "APP_TEMPLATE": "Şablon",
+        "REGISTRY_NAME": "Registry Adı",
+        "COMPANY_NAME": "Firma Adı",
+        "NO_COMPANY": "Firma Yok",
+        "REPOSITORY_NAME": "Repo Adı",
+        "TAG_NAME": "Etiket Adı",
+        "DESCRIPTIONS": "Açıklama",
+        "LOGO_URL": "Logosu",
+        "IMAGE_NAME": "İmaj Adı",
+        "HOST_PORT": "Port",
+        "PLATFORM": "Platform",
+        "ENVIRONMENT_TEXT": "Çevreseller",
+        "PROP_NOT_FOUND": "Bulunamadı"
+      }
+    },
+    "TENANTS": {
+      "TITLE": "Firmalar",
+      "TAB1": "Genel Bilgi",
+      "TAB2": "Ayarlar/Json",
+      "FIELDS": {
+        "NAME": "Adı",
+        "DNS_NAME": "Dns Adı",
+        "NOTE": "Not",
+        "ADDRESS": "Adres",
+        "DATABASE": "Veri Taban",
+        "CONTACT_PERSON": "Kontakt Kişi",
+        "TELEPHONE": "Telefon Numarası",
+        "EMAIL_ADDRESS": "E-Posta Adresi",
+        "PRIVATE_STTINGS": "Özel Ayarlar"
+      }
+    },
+    "SETTINGS": {
+      "TITLE": "Ayarlar",
+      "FIELDS": {
+        "NAME": "İsim",
+        "REGISTRY_URL": "Registry Adresi",
+        "USER_NAME": "Kullanıcı Adı",
+        "PASSWORD": "Parola",
+        "PERSONAL_ACCESS_TOKEN": "Peronal Access Token",
+        "AUTHENTICATION_REQUIRED": "Kimlik Doğrulama Gerekli"
+      }
+    },
+    "SHELLSCRIPTS": {
+      "TITLE": "Shell Scripts",
+      "FIELDS": {
+        "NAME": "Adı",
+        "PATH":"Yol",
+        "FULL_PATH":"Tam yol",
+        "FILE_NAME":"Dosya Adı",
+        "SCRIPT_CONTENT":"Script İçeriği"
+      }
+    }
+  },
+  "TIME_AGO": {
+    "SEC_45": "bir kaç saniye önce",
+    "SEC_90": "bir dakika önce",
+    "MIN_45": " dakika önce",
+    "MIN_90": " bir saat önce",
+    "HR_22": " saat önce",
+    "HR_36": "bir gün önce",
+    "DAY_25": " gün önce",
+    "DAY_45": "bir ay önce",
+    "DAY_345": " ay önce",
+    "DAY_545": "bir yıl once",
+    "YEAR": " yıl önce"
+  },
+  "USERS": {
+    "ERROR": {
+      "NOT_VALID": "Geçersiz",
+      "REQUIRED": "Gerekli"
+    }
+  },
+  "REGISTRY_MANAGER": {
+    "TITLE": "Registry Yönetimi",
+    "FIELDS": {
+      "REPOSITORIES": "Repositories"
+    }
+  },
+  "TUTORIAL": {
+    "MENU": "Eğitim",
+    "TITLE": "Eğitim Göster",
+    "DATA": [{
+        "id": 1,
+        "title": "Docker nedir ve ne işe yarar?",
+        "description": "Docker, yazılım geliştiriciler ve sistemciler için geliştirilen açık kaynaklı bir sanallaştırma platformudur. Docker ile Linux, Windows ve MacOSX üzerinde Linux ve Windows sanal containerler (makineler) çalıştırabilirsiniz.",
+        "isDisabled": false,
+        "isExpanded": false
+      },
+      {
+        "id": 2,
+        "title": "Docker imagenedir",
+        "description": "Docker Image'ı aslında bir template, şablon olarak tanımlayabiliriz. Docker üzerinde çalışabilecek bir container oluşturmak için gerekli olan template'lere biz aslında Docker Image diyoruz.",
+        "isDisabled": false,
+        "isExpanded": false
+      },
+      {
+        "id": 3,
+        "title": "Docker container nedir",
+        "description": "Docker, uygulamalarınızı container kullanarak hızla derlemenize, test etmenize ve dağıtmanıza imkan tanıyan bir yazılım platformudur.",
+        "isDisabled": false,
+        "isExpanded": false
+      },
+      {
+        "id": 4,
+        "title": "What is docker-image-service",
+        "description": "Description One",
+        "isDisabled": false,
+        "isExpanded": false
+      },
+      {
+        "id": 5,
+        "title": "What is docker-swarm",
+        "description": "Description One",
+        "isDisabled": false,
+        "isExpanded": false
+      },
+      {
+        "id": 5,
+        "title": "What is docker-volume",
+        "description": "Description One",
+        "isDisabled": false,
+        "isExpanded": false
+      }
+    ]
+  },
+  "CONFIRM_MODAL": {
+    "CON_PRUNE_TITLE": "Konteyner Temizlemeyi Onayla",
+    "CON_PRUNE_MESSAGE": "Bu işlem tüm durdurulmuş konteynerleri silecektir. Devam etmek istiyor musunuz?",
+    "CON_INCLUDE_PROTECTED": "Korumalı olanları dahil et",
+    "VOL_PRUNE_TITLE": "Birim Temizlemeyi Onayla",
+    "VOL_PRUNE_MESSAGE": "Bu işlem tüm kullanılmayan birimleri silecektir. Devam etmek istiyor musunuz?",
+    "IMAGE_PRUNE_TITLE": "İmaj Temizlemeyi Onayla",
+    "IMAGE_PRUNE_MESSAGE": "Bu işlem tüm kullanılmayan imajları silecektir. Devam etmek istiyor musunuz?",
+    "NETWORK_PRUNE_TITLE": "Ağ Temizlemeyi Onayla",
+    "NETWORK_PRUNE_MESSAGE": "Bu işlem tüm kullanılmayan ağları silecektir. Devam etmek istiyor musunuz?"
+  },
+  "DATA": {
+    "REGISTRY": [{
+        "value": "http://hub.bakelor.com",
+        "address": "hub.bakelor.com"
+      },
+      {
+        "value": "https://registry-1.docker.io",
+        "address": "registry-1.docker.io"
+      }
+    ],
+    "VOLUME_DRIVERS": [{
+      "id": "local",
+      "name": "local"
+    }],
+    "PLATFORM": [{
+        "id": 1,
+        "name": "Multiple"
+      },
+      {
+        "id": 2,
+        "name": "Windows"
+      },
+      {
+        "id": 3,
+        "name": "Linux"
+      }
+    ],
+    "RESTART_POLICY": [{
+        "id": 0,
+        "name": "Undefined"
+      },
+      {
+        "id": 1,
+        "name": "No"
+      },
+      {
+        "id": 2,
+        "name": "Always"
+      },
+      {
+        "id": 3,
+        "name": "OnFailure"
+      },
+      {
+        "id": 4,
+        "name": "UnlessStopped"
+      }
+    ]
+  },
+  "TOOLTIP": {
+    "ALWAYS_PULL_IMAGE": "Aktif edilirse, dockify konteyneri oluşturmadan önce imajı otomatik olarak indirmeye çalışacak.",
+    "AUTO_UPDATE": "Eğer seçilirse, güncellemeleri otomatik olarak alacak",
+    "PROTECTED": "Korumalı konteynerler doğrudan silinemez",
+    "EDIT_NAME": "Adını düzenlemek için tıklayın"
+  }
+}
